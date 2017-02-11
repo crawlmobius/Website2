@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Canvas</title>
+<style>
+body{
+	background-color:#87F4F2;}
+#outer {margin-left:40px;
+	margin-top:40px;
+	}
+</style>
+</head>
+<body>
+<div id ="outer">
+<canvas id="mycanvas" width="500px" height="500px" style="border:15px solid"> Your browser does not support the canvas. Please try another browser.</canvas>
+</div>
+<script>
+var mycanvas = document.getElementById("mycanvas");
+var ctx = mycanvas.getContext('2d');
+
+//drawing rectangle
+ctx.fillStyle='#5DA6F2';
+ctx.fillRect(50, 50, 400, 400);
+
+//drawing semi circle  body
+ctx.beginPath();
+ctx.arc(250, 450, 130, 0, Math.PI, true);
+ctx.closePath();
+ctx.lineWidth = "15";
+ctx.strokeStyle = "black";
+ctx.stroke();
+ctx.fillStyle = "#6EA232";
+ctx.fill();
+
+//drawing square head
+ctx.fillStyle = "#FFE6FD";
+ctx.fillRect(170, 152, 160, 160);
+
+//Drawing mouth
+ctx.beginPath();
+ctx.arc(250, 270, 10, 0, 2*Math.PI);
+ctx.lineWidth = "10";
+ctx.strokeStyle = "red";
+ctx.stroke();
+
+//Drawing blue eyes squares
+ctx.fillStyle="#2A75B6";
+ctx.fillRect(180, 180, 65, 65);
+
+ctx.fillStyle="#2A75B6";
+ctx.fillRect(255, 180, 65, 65);
+
+//Drawing two yellow circles
+ctx.beginPath();
+ctx.arc(212, 215, 10, 0, 2*Math.PI);
+ctx.lineWidth = "12";
+ctx.strokeStyle = "yellow";
+ctx.stroke();
+
+ctx.beginPath();
+ctx.arc(289, 215, 10, 0, 2*Math.PI);
+ctx.lineWidth = "12";
+ctx.strokeStyle = "yellow";
+ctx.stroke();
+
+var xp = 15;
+var xp_add = 2;
+
+function moveEyes(){
+	xp+=xp_add;
+	if (xp > 13 || xp < -15) xp_add=-xp_add;
+	xp+=xp_add;
+	drawEyes(xp);}
+	
+function drawEyes(xp){
+	
+//Drawing blue eyes squares
+ctx.fillStyle="#2A75B6";
+ctx.fillRect(180, 180, 65, 65);
+
+ctx.fillStyle="#2A75B6";
+ctx.fillRect(255, 180, 65, 65);
+
+//Drawing two yellow circles
+ctx.beginPath();
+ctx.arc(212+xp, 215, 10, 0, 2*Math.PI);
+ctx.lineWidth = "12";
+ctx.strokeStyle = "yellow";
+ctx.stroke();
+
+ctx.beginPath();
+ctx.arc(289+xp, 215, 10, 0, 2*Math.PI);
+ctx.lineWidth = "12";
+ctx.strokeStyle = "yellow";
+ctx.stroke();	
+}
+setInterval(moveEyes, 180);
+</script>
+
+
+</body>
+</html>

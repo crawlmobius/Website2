@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style>
+.myBackground {
+	position:relative;
+	overflow: hidden;
+	width:800px;
+	height:800px;
+	background-image:url(LiquidGlass.gif);}
+.fly{
+	position:absolute;
+	top: 500px;
+	left: 400px;
+	background-image:url(Pearl.gif);
+	width:400px;
+	height:400px;}
+.myButton{
+	background-color:#3DBEF4;
+	width:100px;
+	height:60px;
+	border-radius:30;
+	border-style:groove;
+	border-color:white;}
+</style>
+
+</head>
+
+<body>
+<script type = "text/javascript">
+
+var uleft = 0;
+var utop = 0;
+var dl = 2;
+var dt = 2;
+var turn = 0;
+
+function moveFly(){
+	uleft = 200; 
+	utop = 450;
+	var elem = document.getElementById("myfly");
+	var snd = new Audio("Virus.mp3");
+	snd.play();
+	
+function frame(){
+	switch(turn){
+		case 0:
+		if (uleft>0) {uleft = uleft - dl;}
+		else {turn = 1};
+		break;
+		case 1:
+		if (uleft < 480) {uleft = uleft + dl; utop = utop -dt;}
+		else {turn = 2};
+		break;
+		case 2:
+		if (uleft > 0) {uleft = uleft - dl; }
+		else {turn = 3};
+		break;
+		case 3:
+		if (uleft < 450) {uleft = uleft + dl; utop = utop + dt;}
+		else {turn = 4};
+		break;
+		case 4:
+		if (uleft>0) {uleft = uleft - dl;}
+		else {turn = 5};
+		break;
+		case 5: 	
+		if (utop > 10) {utop = utop - dt;}
+		else {turn = 6};
+		break;
+		case 6:
+		if (uleft < 480) {uleft = uleft + dl;}
+		else {turn = 7};
+		break;
+		case 7:
+		if (utop < 430) {utop = utop + dt;}
+		else {turn = 8};
+		break;
+		case 8:
+		if (uleft > 0) {uleft = uleft - dl;}
+		else {turn = 9};
+		break;
+	}
+elem.style.left = uleft +'px';
+elem.style.top = utop + 'px';
+}
+var id = setInterval(frame, 20);
+}
+</script>
+<div class = "myBackground">
+<div style="left:200px; top:450px;" class = "fly" id = "myfly">
+</div>
+<br>
+<div class = "myButton" align="center" id = "start" onClick="javascript:moveFly(); ">PRESS HERE<br>Turn your speakers on!</div>
+</body>
+</html>

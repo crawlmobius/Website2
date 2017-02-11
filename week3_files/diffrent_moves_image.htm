@@ -1,0 +1,98 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><title>move image </title>
+<style type="text/css">
+
+ #bird {position: absolute;
+                           top: 400px;
+                           left: 400px;
+                                             }
+</style>
+<script language="JavaScript">
+var swidth = screen.width;
+var sheight = screen.height;
+var iwidth = 100;
+var iheight = 100
+function getObj(name)
+                   {
+                     if (document.getElementById)
+                     {
+                           this.obj = document.getElementById(name);
+                           this.style = document.getElementById(name).style;
+                     }
+                     else if (document.all)
+                     {
+                           this.obj = document.all[name];
+                           this.style = document.all[name].style;
+                     }
+                     else if (document.layers)
+                     {
+                           this.obj = document.layers[name];
+                           this.style = document.layers[name];
+                     }
+                   }
+var currentx = 400;
+var currenty = 400;
+function move(deltax, deltay) {
+        var x = new getObj("bird");
+        currentx += deltax;
+        currenty += deltay;
+        x.style.top = currenty;
+        x.style.left = currentx;
+// position may change for next move
+if (currentx>swidth) {
+    currentx = 0; }
+if (currenty>sheight) {
+    currenty = 0;}
+if ((currentx + iwidth)<0) {
+   currentx = swidth; }
+if ((currenty+iheight)<0) {
+   currenty = sheight;}
+}
+var tid;
+function startflying() {
+
+tid = setInterval("fly();",250);
+//setInterval look at  http://www.w3schools.com/jsref/met_win_setinterval.asp
+}
+var xv = 5 ;
+var yv = -10;
+function fly(){
+ move(xv,yv);
+}
+function stopflying () {
+  clearInterval(tid);
+  //look at http://www.w3schools.com/jsref/met_win_clearinterval.asp
+}
+function setspeeds(f) {
+ 
+ xv = 1*f.hspeed.value;
+ yv = 1*f.vspeed.value;
+
+ return false;
+}
+
+</script>
+</head>
+<body>
+<div style="top: 25px; left: 775px;" id="bird">
+<img src="bird.gif" height="100" width="100"> </div>
+
+                  
+
+<a href="javascript:move(0,50);">Move down  </a> <br>
+<a href="javascript:move(0,-50);">Move up  </a> <br>
+<a href="javascript:move(50,0);">Move right  </a> <br>
+<a href="javascript:move(-50,0);">Move left  </a><br>
+<a href="javascript:move(50,50);">Move down and right </a> <br>
+<a href="javascript:move(-50,-50);">Move up and left </a> <br>
+<br>
+<a href="javascript:startflying();">Start flying </a> <br>
+<a href="javascript:stopflying();">Stop flying </a> <br>
+
+<form name="fx" onSubmit="return setspeeds(this);">
+Horizontal Speed Factor<input value="15" name="hspeed" type="text" size="3">
+Vertical Speed Factor <input value="5" name="vspeed" type="text" size="5"><br>
+<input value="Set speeds" type="submit">
+</form>
+
+</body></html>

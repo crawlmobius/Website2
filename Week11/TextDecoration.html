@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<script src="http://fabricjs.com/lib/fabric.js"></script>
+
+<canvas id="c" width="450" height="500" ></canvas>
+
+<script >
+var canvas  = new fabric.Canvas('c', { backgroundColor: "#66FF99" });
+//indicate the location
+var text = new fabric.Text('Hello World', { left: 100, top: 110 }); 
+
+//change the font
+var VerdanaText = new fabric.Text("I'm in Verdana", { left: 110, top: 50, fontFamily: 'Verdana' });
+
+//change the font size
+var text40 = new fabric.Text("I'm at fontSize 40", { left: 15, top: 10, fontSize: 40 }); 
+
+var text20 = new fabric.Text("I'm at fontSize 20", { left: 20, top: 90, fontSize: 20 });
+
+//change font weight
+var normalText = new fabric.Text("I'm a normal text", {left: 15, top: 140, fontWeight: 'normal' });
+
+ var boldText = new fabric.Text("I'm at bold Arial text", { left: 10, top: 190,fontWeight: 'bold', fontFamily: 'Arial' });
+
+var PapyrusText = new fabric.Text("I'm at Papyrus font", { left: 10, top: 230,fontFamily: 'Papyrus' });
+
+var underlineText = new fabric.Text("I'm an underlined text", {left: 10, top: 270, textDecoration: 'underline' }); 
+
+var strokeThroughText = new fabric.Text("I'm a stroke-through text", { left: 10, top: 310, textDecoration: 'line-through', fontFamily: 'Arial' }); 
+
+var overlineText = new fabric.Text("I'm an overline text", {left: 10, top: 370, textDecoration: 'overline' });
+
+var shadowText1 = new fabric.Text("I'm a text with shadow", {left: 10, top: 410, shadow: 'rgba(0,0,0,0.6) 5px 5px 5px', fontFamily: 'Papyrus' }); 
+
+var shadowText2 = new fabric.Text("And another shadow", {left: 10, top: 450, shadow: 'rgba(0,0,0,0.7) 0 0 10px' }); 
+
+
+canvas.add(text, VerdanaText, text40, text20, normalText, boldText, PapyrusText, underlineText, strokeThroughText, overlineText, shadowText1, shadowText2 );
+</script>
+
+</body>
+</html>

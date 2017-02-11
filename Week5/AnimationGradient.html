@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Canvas Gradient Move</title>
+<style>
+body {background:#42F77E;}
+#outer {margin-left:40px;
+		margin-top:40px;
+}
+</style>
+</head>
+
+<body onLoad="init();">
+<div id ="outer">
+<canvas id = "canvas1" width = "400" height="400">
+If your broser does not support the canvas, try another browser.
+</canvas>
+</div>
+
+<script>
+var mycanvas=document.getElementById("canvas1");
+var cntx=mycanvas.getContext('2d');
+var c1 = 0.25;
+var c2 = 0.5;
+var c3 = 0.75;
+var dc1 = 0.05;
+var dc2 = 0.5;
+var dc3 = 0.05;
+function init()
+
+{
+myMove=setInterval(draw,220);
+}
+
+function draw()
+{
+var mygradient=cntx.createLinearGradient(0,0,400,400);   
+  
+ mygradient.addColorStop(0,"#66FF33");
+  mygradient.addColorStop(c1,"#0099FF");
+  mygradient.addColorStop(c2,"#CC99FF");
+  mygradient.addColorStop(c3, "#FFFF66");   
+  mygradient.addColorStop( 1,"#333333");          
+  cntx.fillStyle=mygradient;
+  cntx.fillRect(0,0,200,200);
+  
+   var mygradient2=cntx.createLinearGradient(400,0,0,400);   
+  
+ mygradient2.addColorStop(0,"#66FF33");
+  mygradient2.addColorStop(c1,"#0099FF");
+  mygradient2.addColorStop(c2,"#CC99FF");
+  mygradient2.addColorStop(c3, "#FFFF66");
+  mygradient2.addColorStop(1,"#333333");   
+             
+  cntx.fillStyle=mygradient2;
+  cntx.fillRect(200,0,200,200);
+  
+  var mygradient3=cntx.createLinearGradient(0,400,400,0);   
+  
+ mygradient3.addColorStop(0,"#66FF33");
+  mygradient3.addColorStop(c1,"#0099FF");
+  mygradient3.addColorStop(c2,"#CC99FF");
+  mygradient3.addColorStop(c3, "#FFFF66");
+  mygradient3.addColorStop(1,"#333333");   
+             
+  cntx.fillStyle=mygradient3;
+  cntx.fillRect(0,200,200,200);
+  
+ var mygradient4=cntx.createLinearGradient(400,400,0,0);   
+  
+ mygradient4.addColorStop(0,"#66FF33");
+  mygradient4.addColorStop(c1,"#0099FF");
+  mygradient4.addColorStop(c2,"#CC99FF");
+  mygradient4.addColorStop(c3, "#FFFF66");
+  mygradient4.addColorStop(1,"#333333");   
+             
+  cntx.fillStyle=mygradient4;
+  cntx.fillRect(200,200,200,200); 
+
+c1=c1 + dc1;
+c2=c2 + dc2;
+c3=c3 + dc3;
+
+if (c3>0.94) {dc1= -dc1; dc2= -dc2; dc3= -dc3;}
+if (c3>0.74) {dc1= -dc1; dc2= -dc2; dc3= -dc3;}
+}
+</script>
+</body>
+</html>

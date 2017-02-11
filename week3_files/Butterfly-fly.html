@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+.example_path {
+	position: relative;
+	overflow: hidden;
+	width: 880px;
+	height: 780px;
+	border: 1px solid #000;
+	background:url(flowers-daizy.JPG);
+}
+
+.example_path .example_block {
+	position: absolute;
+	background:url(butterfly.gif);
+	background-repeat:no-repeat;
+	width: 100px;
+	height: 100px;
+	padding-top: 10px;
+	text-align: center;
+	color: #fff;
+	font-size: 10px;
+	white-space: nowrap;
+}
+</style>
+<script type="text/javascript">
+function move(elem) {
+
+  var left = 0;
+var top = 0;
+var point = 0; //to track where butterfly is
+var addleft = 1;
+var addtop = 0.5;
+var snd = new Audio('swan_lake.mp3');
+snd.load();
+
+  function doMove() {
+	  snd.play();
+    if (point<1) {
+    left=left + addleft;  // update parameters 
+    top= top + addtop;
+    elem.style.left = left + 'px'; // show frame 
+	elem.style.top = top + 'px';
+    if (left > 430)  
+      {
+		  point=1;
+  		}
+	}
+	if (point==1) {
+	left--; //update parameters
+	top=top + addtop;
+	elem.style.left = left + 'px'; // show frame
+	elem.style.top = top + 'px';
+	  }
+	if (( point==1)&&(left<150)){
+		point=2;
+		
+	}
+	if (point==2) {
+	left++; //update parameters
+	top= top + addtop;
+	elem.style.left = left + 'px'; // show frame
+	elem.style.top = top + 'px';
+	}
+	
+	if (( point == 2)&&(left >630)){
+		clearInterval(id); //check finish condition
+		snd.pause();
+	}
+  }
+  var id = setInterval(doMove, 10) // draw every 10ms
+}
+
+
+
+</script>
+</head>
+<body>
+<div onclick="move(this.children[0])" class="example_path">
+ <div class="example_block" id="gr"></div>
+</div>
+<audio controls>
+<source src="swan_lake.mp3" type="audio/mpeg">
+</audio>
+</body>
+</html>

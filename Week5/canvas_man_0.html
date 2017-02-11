@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+<meta charset="utf-8"> 
+<title>canvas example 2</title> 
+<style>
+body { background-color:#eeeeee; }
+
+#outer {margin-left:40px;
+        margin-top:40px;
+       }
+</style>
+</head> 
+<body> 
+<div id="outer">
+<canvas id="testcanvas" width="500" height="500" style="border: 10px blue solid">
+Your browser doesn't support the canvas! Try another browser.
+</canvas>
+
+</div>
+<script>
+var mycanvas=document.getElementById("testcanvas");
+var cntx=mycanvas.getContext('2d');
+//draw  rectangle
+
+cntx.fillStyle='rgb(200,200,200)'; 
+cntx.fillRect(50,50,400,400); 
+
+// draw  circle
+cntx.beginPath(); 
+cntx.arc(250, 250, 100, 0, Math.PI * 2, true);
+cntx.fillStyle='rgb(255,154,145)';
+cntx.fill();  
+cntx.closePath();
+cntx.lineWidth="4";
+cntx.strokeStyle="black";
+cntx.stroke();
+
+</script>
+ 
+</body></html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Spiral</title>
+</head>
+
+<body>
+<body onLoad="init();">
+  <canvas id="myCanvas" width="400" height="400" >
+  </canvas>
+  
+<script>
+var context;
+var x = 200;
+var y = 200;
+var dx = 40;
+var dc = 0.05;
+var c1 = 0;
+var c2 = 0.05*Math.PI; 
+var rad = 10;
+var drad = 0.2;
+var col = "#FF0066";
+var s = 1;
+
+var myMove;
+context = myCanvas.getContext('2d');
+
+function init()
+{
+	myMove = setInterval(draw,20);
+}
+
+function draw()
+{
+	//context.clearRect(0,0,400,400);
+	context.beginPath();
+	//Draws a circle of radius rad at the coordinates x,y on the canvas
+	context.lineWidth = 5;
+	context.strokeStyle = col;
+	context.arc(x,y,rad,c1,c2,false);
+	context.stroke();
+	rad = rad + drad;
+	c1 = c1 + dc;
+	c2 = c2 + dc;
+	if (rad>200) {
+		clearInterval(myMove);
+	}
+}
+</script>
+</body>
+
+</html>

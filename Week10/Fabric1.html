@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<script src = "fabric/fabric/dist/fabric.js"></script>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<canvas id = "c" width = "400" height = "400"></canvas>
+<script>
+//create a wrapper around native canvas element (with id = "c")
+var canvas = new fabric.Canvas('c');
+
+//create a rectangle object
+var rect = new fabric.Rect({
+	left: 220,
+	top: 180,
+	fill: 'red',
+	width: 60,
+	height: 60,
+	angle: 45,
+	});
+	
+//create triangle
+var path = new fabric.Triangle({
+	width:60,
+	height: 60,
+	fill:"blue",
+	left:100,
+	top: 50,});
+	path.set({ fill: 'red', stroke: 'green', strokeWidth: 5,   opacity: 0.7});
+
+//create triangle
+var path1 = new fabric.Triangle({
+	width:100,
+	height: 60,
+	fill:"blue",
+	left:50,
+	top: 160,});
+	path.set({ fill: 'pink', stroke: 'violet', strokeWidth: 10,   opacity: 0.8});
+	
+	//create circle
+var circle = new fabric.Circle({
+	radius: 50,
+	fill: 'lime',
+	left: 100,
+	top: 240,
+	stroke: 'purple',
+	strokeWidth: 5,
+});
+
+//create gradient circle
+
+var circle1 = new fabric.Circle({
+	radius: 70,
+	left: 250,
+	top: 50,
+	stroke: 'yellow',
+	strokeWidth: 5,
+	
+});
+circle1.setGradient('fill', {
+	x1: 0,
+	y1: -circle1.height / 2,
+	x2: 0,
+	y2: circle1.height / 2,
+	colorStops: {
+		0: "#FF6699",
+		1: "#00FF00"
+	}
+});
+	
+//create rectangle with gradient
+var rect2 = new fabric.Rect({
+	left: 300,
+	top: 280,
+	width: 120,
+	height: 120,
+	angle: 0,
+	//stroke: 'aqua',
+	strokeWidth: 7,
+	});	
+rect2.setGradient('fill', {
+	x1: 0,
+	y1: -rect2.height / 2,
+	x2: 0,
+	y2: rect2.height / 2,
+	colorStops: {
+		0: "black",
+		0.2: "yellow",
+		0.4: "red",
+		0.6: "blue",
+		0.9: "yellow",
+		1: "green",
+	}
+});	
+
+rect.animate('left', 350, {
+  onChange: canvas.renderAll.bind(canvas),
+  duration: 1000,
+  easing: fabric.util.ease.easeOutBounce
+});
+
+	//"add" shapes onto canvas
+	canvas.add(rect, path, path1, circle, circle1, rect2);
+	</script>
+</body>
+</html>

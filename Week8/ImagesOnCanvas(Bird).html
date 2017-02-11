@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style>
+body {
+	margin: 0px;
+	padding:0px;
+}
+</style>
+</head>
+<body>
+<canvas id="myCanvas" width="600" height="600" style="background-image:url(imagesWeek8/sky.png)"</canvas>
+
+<script>
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+
+// insert image onto canvas
+var myImg = new Image();
+var timer1;
+var timer2;
+
+
+myImg.onload = function() {
+	context.drawImage(myImg, 50, 50);
+	//setInterval(moveEyes, 200);
+	//drawEyes(context);
+};
+
+timer1 = setInterval(moveBird, 200);
+var xb = 15;
+var yb = 15;
+var xb_add = 5;
+var yb_add = 5;
+function moveBird() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	xb +=xb_add;
+	yb += yb_add;
+	if (xb > 260 || xb < 0) xb_add =-xb_add;
+	if (yb > 260 || xb < 0) yb_add =-yb_add;
+	
+	context.drawImage(myImg, xb, yb);
+	
+	//moveEyes(xb, yb);
+timer2 = setInterval (moveEyes(xb, yb), 20);
+}
+
+
+myImg.src = 'BirdB.gif'; //image file needs to be in the same folder as whole this html file
+
+var xp = 20;
+var yp = 20;
+var xp_add = 2;
+var yp_add = 2;
+function moveEyes(xb, yb) {
+	xp += xp_add;
+	//yp += yp_add;
+	if (xp > 28 || xp < -20) xp_add =-xp_add;
+	if (yp > 28 || xp < 0) yp_add =-yp_add;
+	drawEyes(xb, yb, xp, yb);
+	doEyes(xb, yb, xp, yp);
+	 
+}
+
+
+
+function doEyes(xb, yb, xp, yp) {
+	
+	//draw two black circles
+	//drawEyes(context, xb, yb);
+	
+	//draw 2 blue circles
+	context.beginPath();
+	context.fillStyle = 'black';
+	context.arc(xb + xp + 80, yb + yp + 60, 10, 30, Math.PI*2, true);
+	context.fill();
+	context.closePath();
+	context.lineWidth = "5";
+	context.strokeStyle = "blue";
+	context.stroke();
+	
+	context.beginPath();
+	context.arc(xb + xp + 160, yb + yp + 70, 10, 30, Math.PI*2, true);
+	context.fill();
+	context.closePath();
+	context.lineWidth = "5";
+	context.strokeStyle = "blue";
+	context.stroke();
+}
+
+function drawEyes (xb, yb, xp, yp){
+	context.beginPath();
+	context.arc(xb  + 80, yb  + 60, 50, 50, Math.PI*2, true);
+	context.closePath();
+	context.lineWidth = "5";
+	context. strokeStyle = "black";
+	context.stroke();
+	context.fillStyle = 'rgb(255, 255, 255)';
+	context.fill();
+	
+	context.beginPath();
+	context.arc(xb + 170, yb  + 70, 50, 50, Math.PI*2, true);
+	context.closePath();
+	context.lineWidth = "5";
+	context. strokeStyle = "black";
+	context.stroke();
+	context.fillStyle = 'rgb(255, 255, 255)';
+	context.fill();
+}
+</script>
+
+</body>
+</html>

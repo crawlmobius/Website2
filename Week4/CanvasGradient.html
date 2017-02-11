@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body> 
+<div id="outer">
+<canvas id="canvas1" width="400" height="400">
+Your browser doesn't support the canvas! Try another browser.
+</canvas>
+</div>
+<script>
+  var mycanvas=document.getElementById("canvas1");
+  var cntx=mycanvas.getContext('2d');
+  var mygradient=cntx.createLinearGradient(0,0,400,400);   
+  
+ mygradient.addColorStop(0,"#ffdd30");
+  mygradient.addColorStop(0.2,"#FFADD6");
+  mygradient.addColorStop(0.4,"#33232B");
+  mygradient.addColorStop(0.9, "#FF3399");
+  mygradient.addColorStop(1,"#333333");   
+             
+  cntx.fillStyle=mygradient;
+  cntx.fillRect(0,0,200,200);
+  
+   var mygradient2=cntx.createLinearGradient(400,0,0,400);   
+  
+ mygradient2.addColorStop(0,"#ffdd30");
+  mygradient2.addColorStop(0.2,"#FFADD6");
+  mygradient2.addColorStop(0.4,"#33232B");
+  mygradient2.addColorStop(0.9, "#FF3399");
+  mygradient2.addColorStop(1,"#333333");   
+             
+  cntx.fillStyle=mygradient2;
+  cntx.fillRect(200,0,200,200);
+  
+  var mygradient3=cntx.createLinearGradient(0,400,400,0);   
+  
+ mygradient3.addColorStop(0,"#ffdd30");
+  mygradient3.addColorStop(0.2,"#FFADD6");
+  mygradient3.addColorStop(0.4,"#33232B");
+  mygradient3.addColorStop(0.9, "#FF3399");
+  mygradient3.addColorStop(1,"#333333");   
+             
+  cntx.fillStyle=mygradient3;
+  cntx.fillRect(0,200,200,200);
+  
+ var mygradient4=cntx.createLinearGradient(400,400,0,0);   
+  
+ mygradient4.addColorStop(0,"#ffdd30");
+  mygradient4.addColorStop(0.2,"#FFADD6");
+  mygradient4.addColorStop(0.4,"#33232B");
+  mygradient4.addColorStop(0.9, "#FF3399");
+  mygradient4.addColorStop(1,"#333333");   
+             
+  cntx.fillStyle=mygradient4;
+  cntx.fillRect(200,200,200,200); 
+</script>
+</body> 
+
+</html>

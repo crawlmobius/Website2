@@ -1,0 +1,374 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script src="http://fabricjs.com/lib/fabric.js"></script>
+<style>
+body
+{
+background-color:   #0176A0;
+background-image:   -moz-radial-gradient(circle, #00BE00 10%, #005077 100%);
+background-image:   -webkit-radial-gradient(circle,#00BE00 10%, #005077 100%);
+background-image:   -o-radial-gradient(circle,#00BE00 10%, #005077 100%);
+background-image:   -ms-radial-gradient(circle, #00BE00 10%, #005077 100%);
+background-image:   radial-gradient(circle, #00BE00 10%, #005077 100%);
+filter:             progid:DXImageTransform.Microsoft.gradient(startColorstr = '#029CC9', endColorstr = '#005077', GradientType = 0);
+}
+</style>
+</head>
+
+<body>
+
+<canvas id = "c" width="700" height="400" style="border:5px solid #8A6921;" ></canvas><br><br>
+
+
+Pick Your Colour:
+<input type = "color" name = "ourcolour" id = "ourcolour"><br>
+<table width="700" border="0">
+  <tbody>
+    <tr>
+      <td><button type = "canvas" onClick = "addRectCanvas()">Set your Canvas</button><br><br></td>
+      <td><button type = "button1"  onClick = "addShape()">Draw Shape</button><br><br></td>
+      <td><button type = "button2" onClick="deleteObject()">Delete Shape</button><br><br></td>
+    <td> <button type = "button" onClick="toImage()">Save to Image</button><td>
+    </tr>
+    <tr>
+      <td><input type = "checkbox" name = "circle" id = "circle" >Circle<br>
+Radius:
+<select id = "ourRadius">
+<option value = "20">20</option>
+<option value= "40" selected>40</option>
+<option value = "60">60</option>
+<option value = "80">80</option>
+</select><br><br></td>
+      <td><!--Option to draw rectangle and radius-->
+<input type="checkbox" name = "rectangular" id = "rectangular" value="true">Rectangle<br>
+<label for = "rwidth">Rectangle Width:</label>
+<input type = "range" name = "rwidth" id = "rwidth" value = "20" min = "1" max = "100"><br><br></td>
+      <td><!--Option to draw polygon-->
+<input type="checkbox" name = "polygon" id = "polygon" value="true">Polygon<br><br></td>
+    </tr>
+    <tr>
+      <td><!--Option to draw a flower-->
+<input type = "checkbox" name="flower" id = "flower" value="true">Flower<br><br></td>
+      <td><!--Option to draw oval-->
+<input type="checkbox" name = "oval" id = "oval" value="true">Oval<br>Radius 1:
+<select id = "ourRX">
+<option value = "20"selected>20</option>
+<option value= "40" >40</option>
+<option value = "60">60</option>
+<option value = "80">80</option>
+</select><br>
+Radius 2:
+<select id = "ourRY">
+<option value = "20"selected>20</option>
+<option value= "40" >40</option>
+<option value = "60">60</option>
+<option value = "80">80</option>
+</select><br><br> <br></td>
+
+      <td><!--Option to draw star-->
+<input type = "checkbox" name = "star" id = "star" value = "true"> Star<br><br></td>
+    </tr>
+    <tr>
+      <td><input type = "checkbox" name = "triangle" id = "triangle" value = "true">Triangle<br>
+      Height:
+<select id = "ourHeightT">
+<option value = "10"selected>10</option>
+<option value= "40" >40</option>
+<option value = "60">60</option>
+<option value = "80">80</option>
+</select><br>
+Width:
+<select id = "ourWidthT">
+<option value = "10"selected>10</option>
+<option value= "40" >40</option>
+<option value = "60">60</option>
+<option value = "80">80</option>
+</select><br><br> 
+      
+      <!--Text window-->
+<textarea id = "myTxt" width = "300" height = "250"></textarea><br>
+Font:
+<select id = "ourFont">
+<option >Times New Roman</option>
+<option >Verdana</option>
+<option> Cooper Black</option>
+<option >Freestyle Script</option>
+<option >Forte</option>
+</select><br><button type = "button" onClick = "addText()" > Add Text</button></td>
+      <td><input type="checkbox" name="pentagon" id="pentagon" value="true">Pentagon<br><br>
+      <input type="file" id="imgLoader"><br><br></td>
+      <td>Select Art Elements:<table width="200" border="0">
+  <tbody>
+    <tr>
+      <td><img onClick="addArt('art')" src = "Photoalbum images/watermelon.png" id = "art" height="40" width = "40" >
+      </td>
+      <td><img  onClick="addArt('art1')"  src = "Photoalbum images/butterfly_1.png" id = "art1" height="40" width = "40"></td>
+      <td><img onClick="addArt('art2')"  src = "Photoalbum images/butterfly_2.png" id = "art2" height="40" width = "40"></td>
+      <td><img onClick="addArt('art3')" src = "Photoalbum images/banner.png" id = "art3" height="40" width = "40"></td>
+      <td><img onClick="addArt('art4')" src = "Photoalbum images/ribbon.png" id = "art4" height="40" width = "40"></td>
+    </tr>
+    <tr>
+      <td><img onClick="addArt('art5')" src = "Photoalbum images/pinkflowersborder.png" id = "art5" height="40" width = "40"></td>
+      <td><img onClick="addArt('art6')" src = "Photoalbum images/bluegreenborder.png" id = "art6" height="40" width = "40"></td>
+      <td><img onClick="addArt('art7')" src = "Photoalbum images/blueborder.png" id = "art7" height="40" width = "40"></td>
+      <td><img onClick="addArt('art8')" src = "Photoalbum images/pineborder.png" id = "art8" height="40" width = "40"></td>
+      <td><img onClick="addArt('art9')" src = "Photoalbum images/flowersborder.png" id = "art9" height="40" width = "40"></td>
+    </tr>
+    <tr>
+      <td><img onClick="addArt('art10')" src = "Photoalbum images/pinkborder.png" id = "art10" height="40" width = "40"></td>
+      <td><img onClick="addArt('art11')" src = "Photoalbum images/blueBG.jpg" id = "art11" height="40" width = "40"></td>
+      <td><img onClick="addArt('art12')" src = "Photoalbum images/green.png" id = "art12" height="40" width = "40"></td>
+      <td><img onClick="addArt('art13')" src = "Photoalbum images/greyBG.png" id = "art13" height="40" width = "40"></td>
+      <td><img onClick="addArt('art14')" src = "Photoalbum images/landscapeBG.png" id = "art14" height="40" width = "40"></td>
+    </tr>
+    <tr>
+      <td><img onClick="addArt('art15')" src = "Photoalbum images/pinkBG.png" id = "art15" height="40" width = "40"></td>
+      <td><img onClick="addArt('art16')" src = "Photoalbum images/spiderBG.png" id = "art16" height="40" width = "40"></td>
+      <td><img onClick="addArt('art17')" src = "Photoalbum images/batBG.png" id = "art17" height="40" width = "40"></td>
+      <td><img onClick="addArt('art18')" src = "Photoalbum images/pumpkinBG.png" id = "art18" height="40" width = "40"></td>
+      <td><img onClick="addArt('art19')" src = "Photoalbum images/spaceBG.png" id = "art19" height="40" width = "40"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+ 
+</table>
+</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+var canvas = new fabric.Canvas('c', {backgroundColor: "pink"});
+var circleA = new fabric.Circle({
+	radius: 35,
+	fill: 'yellow',
+	left: 0,
+	top: 11 });
+var circleB = new fabric.Circle({
+	radius: 25,
+	fill: 'orange',
+	left: 65 });
+var circleC = new fabric.Circle({
+	radius: 35,
+	fill: 'blue',
+	left: 115,
+	top: 5 });	
+var circleD = new fabric.Circle({
+	radius: 35,
+	fill: 'red',
+	left: 60,
+	top: 50 });		
+var circleE = new fabric.Circle({
+	radius: 35,
+	fill: 'green',
+	left: 86,
+	top: -60 });		
+var circleF = new fabric.Circle({
+	radius: 35,
+	fill: 'violet',
+	left: 18,
+	top: -54 });	
+	
+	
+	
+var points = [
+{x: 50, y: 0},
+{x: 65, y: 40},
+{x: 100, y: 40},
+{x: 68, y: 55},
+{x: 80, y: 100},
+{x: 50, y: 70},
+{x: 15, y: 100},
+{x: 30, y: 55},
+{x: 0, y: 40},
+{x: 40, y: 40},
+
+];
+
+var points2 = [
+{x: 50, y: 0},
+{x: 100, y: 40},
+{x: 80, y: 100},
+{x: 15, y: 100},
+{x: 0, y: 40},
+
+];
+
+var PolygonPoints = [
+{x: 0, y: 42},
+{x: 155, y: 0},
+{x: 155, y: 243},
+{x: 0, y: 245}
+];
+
+function addRectCanvas() {
+	var ourCol = document.getElementById('ourcolour').value;
+    var    CanvasRect = new fabric.Rect({left:0, top:0, width: 699, height: 499, fill: ourCol, selectable: false });
+canvas.add(CanvasRect);
+};
+
+function addShape() {
+	var ourCol = document.getElementById('ourcolour').value;
+	var ourRad = document.getElementById('ourRadius').value;
+	var ourHeightT = parseInt(document.getElementById('ourHeightT').value);
+	var ourWidthT = parseInt(document.getElementById('ourWidthT').value);
+	var ourWidth = parseInt(document.getElementById('rwidth').value);
+	var ourRX = parseInt(document.getElementById('ourRX').value);
+	var ourRY = parseInt(document.getElementById('ourRY').value);
+	var ourChoice1 = document.getElementById('rectangular').checked;
+	var ourChoice2 = document.getElementById('circle').checked;
+	var ourChoice3 = document.getElementById('polygon').checked;
+	var ourChoice4 = document.getElementById('oval').checked;
+	var ourChoice5 = document.getElementById('flower').checked;
+	var ourChoice6 = document.getElementById('star').checked;
+	var ourChoice7 = document.getElementById('triangle').checked;
+	var ourChoice8 = document.getElementById('pentagon').checked;
+			if (ourChoice1) {
+				var rect = new fabric.Rect({left:100, top:100, width: ourWidth, height: 50, fill: ourCol});
+				canvas.add(rect);
+				document.getElementById('rect').checked= false;
+			}
+			if (ourChoice2) {
+				var circle = new fabric.Circle({ radius: ourRad, fill: ourCol, left: 200, top: 200});
+				canvas.add(circle);
+				document.getElementById('circle').checked= false;
+			}
+			if (ourChoice3) {
+				var polygon = new fabric.Polygon(PolygonPoints, {left: 0, top: 0, fill: ourCol });
+  canvas.add(polygon);
+		document.getElementById('polygon').checked= false;		
+				
+			}
+			if (ourChoice4) {
+				var oval = new fabric.Ellipse({left: 100, top: 100, fill:ourCol, rx: ourRX, ry: ourRY});
+				canvas.add(oval);
+				document.getElementById('oval').checked= false;
+				
+			}
+			if (ourChoice5) {
+				var flower = new fabric.Group([circleA, circleB, circleC, circleD, circleE, circleF],{
+					left:350,
+					top:300,
+					stroke: 'black',
+					strokeWidth: 2,
+					<!--fill: ourCol--!> 
+					 });
+					canvas.add(flower);
+					document.getElementById('flower').checked= false;
+			}
+			if (ourChoice6) {				
+				var star = new fabric.Polygon(points, {
+                    stroke: 'black',
+					fill: ourCol,
+    				left: 250,
+    				top: 250,
+    				strokeWidth: 2,
+    				strokeLineJoin: 'bevil'}, false);
+					canvas.add(star);	
+					document.getElementById('star').checked= false;		
+			}
+			
+			if (ourChoice7) {
+				var triangle = new fabric.Triangle({left: 100, top: 100, width: ourWidthT, height: ourHeightT, fill: ourCol});
+				canvas.add(triangle);
+				document.getElementById('triangle').checked = false;
+}
+			if (ourChoice8) {				
+				var pentagon = new fabric.Polygon(points2, {
+					fill: ourCol,
+    				left: 150,
+    				top: 200,});
+    				canvas.add(pentagon);	
+					document.getElementById('pentagon').checked= false;		
+			}
+};
+
+
+window.deleteObject = function() {
+        canvas.getActiveObject().remove();
+}
+
+function toImage()
+{
+	if (!fabric.Canvas.supports('toDataURL'))
+	{
+		alert('This browser does not provide means to serialize canvas to an image');
+	} else
+	{
+		window.open(canvas.toDataURL('png'));
+	}
+};
+
+document.getElementById('imgLoader').onchange = function handleImage(e) {
+	var reader = new FileReader();
+	reader.onload = function (event) { console.log('fdsf');
+	var imgObj = new Image();
+	imgObj.src = event.target.result;
+	imgObj.onload = function() {
+		//start fabricJS stuff
+		
+		var image = new fabric.Image(imgObj);
+		image.set({
+			left: 250,
+			top: 250,
+			angle: 20,
+			padding: 10,
+			cornersize: 10
+		});
+		//image.scale(getRandomNum(0.1, 0.25)).setCoords();
+		canvas.add(image);
+		
+		//end fabricJS stuff
+	}
+	}
+	reader.readAsDataURL(e.target.files[0]);
+}
+
+function addText() {
+	var ourTxt = document.getElementById('myTxt').value;
+	var ourFont = document.getElementById('ourFont').value;
+	var ourColText = document.getElementById('ourcolour').value;
+	var newText = new fabric.Text(ourTxt, { left: 100, top:100, fontFamily: ourFont, fill: ourColText });
+	canvas.add(newText);
+};
+window.deleteObject = function() {
+        canvas.getActiveObject().remove();
+}
+function addArt(imageID) {
+
+		var imgElement = document.getElementById(imageID);
+		var imgInstance = new fabric.Image(imgElement, {
+  		left: 100,
+  		top: 100,
+  		angle: 30,
+  		opacity: 0.85
+		});
+		canvas.add(imgInstance);
+}
+window.deleteObject = function() {
+        canvas.getActiveObject().remove();
+}
+</script>
+
+</body>
+</html>
+

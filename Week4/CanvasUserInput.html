@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<p>Canvas:</p>
+X1: <input type="text" id="myX1" value="0">
+Y1: <input type="text" id="myY1" value="0">
+<br>
+X2: <input type="text" id="myX2" value="300">
+Y2: <input type="text" id="myY2" value="300">
+<button onClick="drawR()">Do </button>
+</br>
+
+<form name="myform">
+<select name="form">
+<option value="My Form">My Form</option>
+<option value="New Form">New Form</option>
+</select>
+
+<select name="color1">
+<option value="red" selected>red </option>
+<option value="yellow"> yellow</option>
+<option value="green" >green </option>
+<option value="blue"> blue</option>
+<option value="black"> black</option>
+</select>
+
+<select name="color2">
+<option value="red" >red </option>
+<option value="yellow" selected> yellow</option>
+<option value="green" >green </option>
+<option value="blue"> blue</option>
+<option value="black"> black</option>
+</select>
+
+<select name="color3">
+<option value="red" >red </option>
+<option value="yellow" > yellow</option>
+<option value="green" selected>green </option>
+<option value="blue"> blue</option>
+<option value="black"> black</option>
+</select>
+
+<select name="color4">
+<option value="red" >red </option>
+<option value="yellow" > yellow</option>
+<option value="green" >green </option>
+<option value="blue" selected> blue</option>
+<option value="black"> black</option>
+</select>
+
+<select name="color5">
+<option value="red" >red </option>
+<option value="yellow" > yellow</option>
+<option value="green" >green </option>
+<option value="blue" > blue</option>
+<option value="black" selected> black</option>
+</select>
+
+<button onClick = "ChangeColor();"href="javascript:;">Change Colour</button>
+
+<canvas id="myCanvas" width="400" height="400" style="border:1px solid">
+Your browser does not support the HTML 5 canvas tag. Try another browser
+</canvas>
+
+<script>
+function drawR()
+{
+	
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+ctx.clearRect(0,0,c.width, c.height);	
+var mygradient=ctx.createLinearGradient(0,0,400,400);   
+  
+ mygradient.addColorStop(0,"#ffdd30");
+  mygradient.addColorStop(0.2,"#FFADD6");
+  mygradient.addColorStop(0.4,"#33232B");
+  mygradient.addColorStop(0.9, "#FF3399");
+  mygradient.addColorStop(1,"#333333");   
+             
+  ctx.fillStyle=mygradient;
+  ctx.fillRect(0,0,200,200);
+}
+
+function ChangeColor(){
+	var newColor = document.getElementById('color1');
+	var newSize = document.getElementById('size');
+	alert(newColor.value);
+	ctx.strokeStyle = newColor.value;
+	ctx.lineWidth = newSize.value;
+}
+
+</script>
+</body>
+</html>

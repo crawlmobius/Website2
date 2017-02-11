@@ -1,0 +1,513 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style>
+.myButton
+{
+	width: 90px;
+	height: 25px;
+	border: double 15px;
+	border-color:#52CC29;
+	border-radius:25px; 
+	background: -webkit-radial-gradient(#52CC29, #880FE3); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#52CC29, #880FE3); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#52CC29, #880FE3); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#52CC29, #880FE3); /* Standard syntax */
+	font: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;	
+	text-align:center;
+	padding: 10px 10px 10px 10px;
+	
+}	
+</style>
+
+</head>
+
+<body onLoad="init();">
+<div id="outer">
+<canvas id="canvas1" width="700" height="600">
+Your browser doesn't support the canvas! Try another browser.
+</canvas>
+</div>
+<script>
+  var mycanvas=document.getElementById("canvas1");
+  var cntx=mycanvas.getContext('2d');
+  
+var c1 = 0.15;
+var c2 = 0.46;
+var c3 = 0.6;
+var c4 = 0.84;
+var dc1 = 0.05;
+var dc2 = 0.5;
+var dc3 = 0.05;
+var dc4 = 0.08;
+var score=0.0;
+var snd = new Audio("start.mp3");
+  snd.load();
+  snd.play();
+
+//Function to move hand with the stick by keyboard keys
+function init()
+
+{
+
+
+myMove=setInterval(draw,1001);
+stickLeft();
+ document.onkeydown = function(e) {
+    switch (e.keyCode) {
+        case 37:
+            stickLeft();
+            break;
+        case 39:
+            stickR();
+            break;
+    }
+};
+}
+
+function draw()
+{
+  
+  //snd.pause();
+  //Sun background
+  var mygradient0=cntx.createRadialGradient(360,300,350,290,300,150);
+  
+  mygradient0.addColorStop(0,"#1F003D"); //dark violet
+  mygradient0.addColorStop(c1,"#6600CC"); //violet
+  mygradient0.addColorStop(c2,"pink");
+  mygradient0.addColorStop(c3, "blue");
+  mygradient0.addColorStop(c4,"orange");   
+  mygradient0.addColorStop(1,"yellow"); 
+             
+  cntx.fillStyle=mygradient0;
+  cntx.fillRect(0,0,700,600);
+  
+
+  
+  //Water background  
+  var mygradient3=cntx.createLinearGradient(0,400,00,600);   
+  
+  mygradient3.addColorStop(0,"#1F003D");  //dark violet
+  mygradient3.addColorStop(0.1,"#7519D1");
+  mygradient3.addColorStop(0.15,"#6600CC"); //violet
+  mygradient3.addColorStop(0.3,"#8533D6"); //green-lighter
+  mygradient3.addColorStop(0.4,"#B685E6");  //green-lighter1
+  mygradient3.addColorStop(0.45,"#CC99FF");  //yellow
+  mygradient3.addColorStop(0.55,"#7519D1");
+  mygradient3.addColorStop(0.65,"#CC99FF");   //yellow
+  mygradient3.addColorStop(0.7,"#B685E6");  //green-lighter1
+  mygradient3.addColorStop(0.8,"#8533D6");  //green-lighter
+  mygradient3.addColorStop(0.9, "#6600CC");  //violet
+  mygradient3.addColorStop(1,"#1F003D");   //dark violet
+             
+  cntx.fillStyle=mygradient3;
+  cntx.fillRect(0,350,700,300);
+  
+//Walls
+function drawWall()
+
+var context;
+var wx=15;
+var wy=20;
+var dwx=20;
+var dwy=20;
+var point =0;
+{
+  context.beginPath();
+  context.fillStyle="#6600CC";  
+  context.arc(x,y,19,0,2*Math.PI,true);
+  context.closePath();
+  context.fill();
+  context.beginPath();
+  context.fillStyle="#FFFF00";
+  context.arc(x,y, 11, 0, 2*Math.PI,true);
+  context.closePath();
+  context.fill();
+  
+  switch(point) {
+	case 0:
+	wy+=dwy;
+	if (wy>500 ) { point =1; }   
+  	break;
+  }
+}
+
+  
+ //Mister X - head
+ cntx.beginPath();
+ cntx.arc(350, 250, 40, 0, 2*Math.PI);
+ cntx.strokeStyle = "#666600";
+ cntx.lineWidth = "7";
+ cntx.stroke(); 
+ cntx.fillStyle = "#CCCC00";
+ cntx.fill();
+ 
+ //Mister X - hat -top part
+cntx.beginPath(); 
+cntx.moveTo(312,232);
+cntx.lineTo(350,110);
+cntx.lineTo(385,235);
+cntx.lineWidth = 7;
+cntx.strokeStyle = "#1F0033";
+cntx.stroke();
+cntx.closePath();
+cntx.fillStyle = "#9900FF";
+cntx.fill();
+ 
+ //Mister X - hat - circle part
+ cntx.beginPath(); 
+cntx.moveTo(380,220);
+cntx.quadraticCurveTo(500,250,320,250);
+cntx.moveTo(320,220);
+cntx.quadraticCurveTo(200,250,330,250);
+cntx.strokeStyle = "#1F0033";
+cntx.lineWidth = "7";
+cntx.stroke(); 
+cntx.closePath();
+cntx.fillStyle = "#9900FF";
+cntx.fill();
+
+//Mister X - green eyes
+cntx.beginPath();
+cntx.arc(335, 253, 5, 0, Math.PI);
+cntx.strokeStyle = "black";
+cntx.lineWidth = "5";
+cntx.stroke(); 
+cntx.fillStyle = "#00FF00";
+cntx.fill();
+
+cntx.beginPath();
+cntx.arc(365, 253, 5, 0, Math.PI);
+cntx.strokeStyle = "black";
+cntx.lineWidth = "5";
+cntx.stroke(); 
+cntx.fillStyle = "#00FF00";
+cntx.fill();
+ 
+ //Mister X - dots inside of eyes
+ 
+ cntx.beginPath();
+ cntx.arc(335, 254, 1, 0, Math.PI);
+ cntx.strokeStyle = "black";
+ cntx.lineWidth = "1";
+ cntx.stroke(); 
+ cntx.fillStyle = "black";
+ cntx.fill();
+
+cntx.beginPath();
+ cntx.arc(365, 254, 1, 0, Math.PI);
+ cntx.strokeStyle = "black";
+ cntx.lineWidth = "1";
+ cntx.stroke(); 
+ cntx.fillStyle = "black";
+ cntx.fill();
+ 
+ var xp = 1;
+ var yp = 1;
+ var xp_add = 1;
+ var yp_add = 1;
+ 
+ function moveEyes(){
+	 xp = xp + xp_add;
+	 yp = yp + yp_add;
+	 if (xp > 3 || xp < 0) xp_add = -xp_add;
+	 if (yp > 2|| xp < 0) yp_add = -yp_add;
+	 xp = xp + xp_add;
+	 yp+=yp_add;
+	 drawEyes(xp, yp);}
+	 
+function stickLeft(){ 
+cntx.beginPath();
+ cntx.moveTo(240, 120);
+ cntx.lineTo(140, 450);
+  cntx.lineWidth = "15";
+ cntx.strokeStyle = "#00CC00";
+ cntx.stroke();
+ cntx.beginPath();
+ cntx.arc(245, 120, 30, 0, 2*Math.PI);
+ cntx.fillStyle = "#BFFF7E";
+ cntx.fill();
+ cntx.beginPath();
+ cntx.arc(245, 120, 27, 0, 2*Math.PI);
+ cntx.fillStyle = "#33CC33";
+ cntx.fill();
+
+}
+function stickRight(){ 
+cntx.beginPath();
+ cntx.moveTo(300, 120);
+ cntx.lineTo(140, 450);
+  cntx.lineWidth = "15";
+ cntx.strokeStyle = "#00CC00";
+ cntx.stroke();
+ cntx.beginPath();
+ cntx.arc(300, 120, 30, 0, 2*Math.PI);
+ cntx.fillStyle = "#BFFF7E";
+ cntx.fill();
+ cntx.beginPath();
+ cntx.arc(300, 120, 27, 0, 2*Math.PI);
+ cntx.fillStyle = "#33CC33";
+ cntx.fill();
+
+}
+	 function drawEyes(xp){
+	//Mister X - green eyes
+cntx.beginPath();
+ cntx.arc(335, 253, 5, 0, Math.PI);
+ cntx.strokeStyle = "black";
+ cntx.lineWidth = "5";
+ cntx.stroke(); 
+ cntx.fillStyle = "#00FF00";
+ cntx.fill();
+
+cntx.beginPath();
+ cntx.arc(365, 253, 5, 0, Math.PI);
+ cntx.strokeStyle = "black";
+ cntx.lineWidth = "5";
+ cntx.stroke(); 
+ cntx.fillStyle = "#00FF00";
+ cntx.fill();
+ 
+ //Mister X - dots inside of eyes
+ 
+ cntx.beginPath();
+ cntx.arc(335+xp, 254+yp, 1, 0, Math.PI);
+ cntx.strokeStyle = "black";
+ cntx.lineWidth = "1";
+ cntx.stroke(); 
+ cntx.fillStyle = "black";
+ cntx.fill();
+
+cntx.beginPath();
+ cntx.arc(365+xp, 254+yp, 1, 0, Math.PI);
+ cntx.strokeStyle = "black";
+ cntx.lineWidth = "1";
+ cntx.stroke(); 
+ cntx.fillStyle = "black";
+ cntx.fill();
+	 }
+	 setInterval(moveEyes, 500);
+
+//Mister X - nose
+cntx.beginPath();
+ cntx.arc(348, 265, 7, 0, Math.PI, true);
+ cntx.strokeStyle = "#7A7A00";
+ cntx.lineWidth = "7";
+ cntx.stroke(); 
+ cntx.fillStyle = "#878719";
+ cntx.fill();
+ 
+ //Mister X- dress
+ cntx.beginPath(); 
+ cntx.moveTo(312,270);
+cntx.lineTo(250,510);
+cntx.lineTo(550,510);
+cntx.lineTo(350, 270)
+cntx.lineWidth = 7;
+cntx.strokeStyle = "#1F0033";
+cntx.stroke();
+cntx.closePath();
+cntx.fillStyle = "#9900FF";
+cntx.fill();
+
+cntx.beginPath();
+ cntx.arc(335, 400, 10, 0, 2*Math.PI);
+ cntx.strokeStyle = "black";
+ cntx.lineWidth = "2";
+ cntx.stroke(); 
+ cntx.fillStyle = "yellow";
+ cntx.fill();
+ 
+ cntx.beginPath();
+ cntx.arc(365, 420, 20, 0, 2*Math.PI);
+ cntx.strokeStyle = "black";
+ cntx.lineWidth = "2";
+ cntx.stroke(); 
+ cntx.fillStyle = "yellow";
+ cntx.fill();
+ 
+ cntx.beginPath();
+ cntx.arc(315, 480,15, 0, 2*Math.PI);
+ cntx.strokeStyle = "black";
+ cntx.lineWidth = "2";
+ cntx.stroke(); 
+ cntx.fillStyle = "yellow";
+ cntx.fill();
+
+cntx.beginPath();
+ cntx.arc(455, 480,10, 0, 2*Math.PI);
+ cntx.strokeStyle = "black";
+ cntx.lineWidth = "2";
+ cntx.stroke(); 
+ cntx.fillStyle = "yellow";
+ cntx.fill();
+
+//Mister X - beard
+ cntx.beginPath();
+ cntx.moveTo(305, 253);
+ cntx.lineTo(307, 280);
+ cntx.lineTo(315, 290);
+ cntx.lineTo(318, 300);
+ cntx.lineTo(335, 320);
+ cntx.lineTo(340, 340);
+ cntx.lineTo(345, 360);
+ cntx.lineTo(350, 370);
+ cntx.lineTo(355, 365);
+ cntx.lineTo(360, 340);
+ cntx.lineTo(365, 350);
+ cntx.lineTo(370, 340);
+ cntx.lineTo(375, 320);
+ cntx.lineTo(380, 300);
+ cntx.lineTo(390, 280);
+ cntx.lineTo(395, 253);
+ cntx.lineTo(385, 263);
+ cntx.lineTo(375, 268);
+ cntx.lineTo(365, 275);
+ cntx.lineTo(355, 265);
+ cntx.lineTo(345, 265);
+ cntx.lineTo(335, 275);
+ cntx.lineTo(325, 265);
+ cntx.lineTo(305, 253);
+ cntx.closePath();
+ cntx.lineWidth = "3";
+ cntx.strokeStyle = "rgb(82, 82, 122)";
+ cntx.stroke();
+ cntx.fillStyle = "#9797AF";
+ cntx.fill();
+ 
+ //Left Hand palm 
+ cntx.beginPath();
+ cntx.moveTo(208, 290);
+ cntx.lineTo(190, 285);
+  cntx.lineWidth = "15";
+ cntx.strokeStyle = "#8F8F00";
+ cntx.stroke();
+ 
+ //Left Stick
+
+ cntx.beginPath();
+ cntx.moveTo(240, 120);
+ cntx.lineTo(140, 450);
+  cntx.lineWidth = "15";
+ cntx.strokeStyle = "#00CC00";
+ cntx.stroke();
+ cntx.beginPath();
+ cntx.arc(245, 120, 30, 0, 2*Math.PI);
+ cntx.fillStyle = "#BFFF7E";
+ cntx.fill();
+ cntx.beginPath();
+ cntx.arc(245, 120, 27, 0, 2*Math.PI);
+ cntx.fillStyle = "#33CC33";
+ cntx.fill();
+ 
+ //Left Hand sleeve
+ cntx.beginPath();
+ cntx.moveTo(305, 300);
+ cntx.lineTo(207, 280);
+ cntx.lineTo(207, 450);
+ cntx.lineTo(295, 330);
+ cntx.closePath();
+ 
+ cntx.lineWidth = "3";
+ cntx.strokeStyle = "black";
+ cntx.stroke();
+ cntx.fillStyle = "#9900FF";
+ cntx.fill();
+ 
+ //Right Hand palm
+ cntx.beginPath();
+ cntx.moveTo(493, 287);
+ cntx.lineTo(510, 283);
+  cntx.lineWidth = "15";
+ cntx.strokeStyle = "#8F8F00";
+ cntx.stroke();
+ 
+ //Right Stick
+ cntx.beginPath();
+ cntx.moveTo(465, 120);
+ cntx.lineTo(565, 450);
+  cntx.lineWidth = "15";
+ cntx.strokeStyle = "#00CC00";
+ cntx.stroke();
+ cntx.beginPath();
+ cntx.arc(465, 120, 30, 0, 2*Math.PI);
+ cntx.fillStyle = "#BFFF7E";
+ cntx.fill();
+ cntx.beginPath();
+ cntx.arc(465, 120, 27, 0, 2*Math.PI);
+ cntx.fillStyle = "#33CC33";
+ cntx.fill();
+ 
+ //Right Hand sleeve
+ cntx.beginPath();
+ cntx.moveTo(382, 305);
+ cntx.lineTo(490, 280);
+ cntx.lineTo(530, 450);
+ cntx.lineTo(410, 340);
+ cntx.closePath();
+ 
+ cntx.lineWidth = "3";
+ cntx.strokeStyle = "black";
+ cntx.stroke();
+ cntx.fillStyle = "#9900FF";
+ cntx.fill();
+ 
+
+
+//continuing the function for animated sun gradient 
+ c1=c1 + dc1;
+c2=c2 + dc2;
+c3=c3 + dc3;
+c4=c4 + dc4;
+
+if (c4>0.92) {dc1= -dc1; dc2= -dc2; dc3= -dc3; dc4= -dc4;}
+if (c4<0.92) {dc1= -dc1; dc2= -dc2; dc3= -dc3; dc4= -dc4;}
+
+//Score
+
+cntx.font="30px Arial";
+cntx.fillText("Score:" + score,10,50)
+
+score=getRandomSide();
+var side = getRandomSide();
+if (side = 1){
+
+ cntx.beginPath();
+ cntx.arc(20, 120, 10, 0, 2*Math.PI);
+ cntx.fillStyle = "black";
+ cntx.fill();
+
+ }
+ 
+ if (side = 2){
+ cntx.beginPath();
+ cntx.arc(650, 120, 10, 0, 2*Math.PI);
+ cntx.fillStyle = "black";
+ cntx.fill();
+ }
+
+
+}
+function getRandomSide()
+{min=1;
+max=3;
+return Math.floor(Math.random()*(max-min)+ min);
+}
+
+//snd.pause();
+//var snd1 = new Audio("end.mp3");
+ // snd1.load();
+  //snd1.play();
+</script>
+<div>
+<audio controls>
+<source src="start.mp3" type="audio/mpeg">
+<source src="end.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+</div>
+<div class="myButton" id="start" onclick="javascript:init();"> Start</div>
+</body>
+</html>

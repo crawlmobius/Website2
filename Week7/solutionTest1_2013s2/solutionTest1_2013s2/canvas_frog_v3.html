@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+<meta charset="utf-8"> 
+<title>canvas test 2</title> 
+<style>
+body { background-color:#99FFCC; }
+
+#outer {margin-left:40px;
+        margin-top:40px;
+       }
+</style>
+</head> 
+<body> 
+<div id="outer">
+<canvas id="testcanvas" width="500" height="500" style="border: 12px DarkGreen  solid">
+Your browser doesn't support the canvas! Try another browser.
+</canvas>
+
+</div>
+<script>
+var mycanvas=document.getElementById("testcanvas");
+var cntx=mycanvas.getContext('2d');
+//draw  rectangle
+
+cntx.fillStyle='#CC99FF'; //#99FFFF
+cntx.fillRect(20,20,460,460); 
+
+
+
+// draw  circle-body 
+cntx.beginPath(); 
+cntx.arc(250, 400, 70, 0, Math.PI * 2, true);
+cntx.fillStyle='#33FF99';
+cntx.fill();  
+cntx.closePath();
+cntx.lineWidth="4";
+cntx.strokeStyle="black";
+cntx.stroke();
+// draw 2 rect legs
+cntx.fillStyle='#009966'; 
+cntx.fillRect(135,390,45,85); 
+cntx.lineWidth="15";
+cntx.strokeStyle="black";
+cntx.stroke();
+
+cntx.fillStyle='#009966'; 
+cntx.fillRect(320,390,45,85); 
+cntx.lineWidth="15";
+cntx.strokeStyle="black";
+cntx.stroke();
+
+
+//draw  head
+
+cntx.beginPath(); 
+cntx.arc(250, 250, 100, 0, Math.PI * 2, true);
+cntx.fillStyle='#33FF99';
+cntx.fill();  
+cntx.closePath();
+cntx.lineWidth="4";
+cntx.strokeStyle="black";
+cntx.stroke();
+
+
+ // draw red semi circle  
+cntx.beginPath();  
+cntx.arc(250, 260, 80, 0, Math.PI, false);
+cntx.closePath();  
+cntx.lineWidth="10";
+cntx.strokeStyle="red";
+cntx.stroke();
+
+// draw eyes //yellow semi circles
+cntx.beginPath(); 
+cntx.arc(180, 200, 60, 0, Math.PI, true);
+cntx.fillStyle='#FFFF66';
+cntx.fill();  
+cntx.closePath();
+cntx.lineWidth="4";
+cntx.strokeStyle="green";
+cntx.stroke();
+
+
+
+cntx.beginPath(); 
+cntx.arc(310, 200, 60, 0, Math.PI, true);
+cntx.fillStyle='#FFFF66';
+cntx.fill();  
+cntx.closePath();
+cntx.lineWidth="4";
+cntx.strokeStyle="green";
+cntx.stroke();
+
+
+
+// draw 2 middle eyes
+cntx.beginPath();  
+//cntx.fillStyle='rgb(255,255,255)'; 
+cntx.arc(175, 180, 10, 0, Math.PI * 2, true);
+cntx.fillStyle="black";
+cntx.fill();
+cntx.closePath();
+cntx.lineWidth="5";
+cntx.strokeStyle="green";
+cntx.stroke();
+///////////
+
+cntx.beginPath(); 
+cntx.arc(305, 180, 10, 0, Math.PI * 2, true);
+cntx.fillStyle="black";
+cntx.fill();
+cntx.closePath();
+cntx.lineWidth="5";
+cntx.strokeStyle="green";
+cntx.stroke();
+
+var xp = 15;
+var xp_add = 3;
+
+
+function moveEyes() {
+	xp += xp_add;	
+	if (xp > 80 || xp < 0) xp_add=-xp_add;	
+	xp+=xp_add;	
+	drawEyes(xp);
+	}
+
+function drawEyes(xp) {
+
+
+
+// draw eyes //yellow semi circles
+cntx.beginPath(); 
+cntx.arc(180, 200, 60, 0, Math.PI, true);
+cntx.fillStyle='#FFFF66';
+cntx.fill();  
+cntx.closePath();
+cntx.lineWidth="4";
+cntx.strokeStyle="green";
+cntx.stroke();
+
+
+
+cntx.beginPath(); 
+cntx.arc(310, 200, 60, 0, Math.PI, true);
+cntx.fillStyle='#FFFF66';
+cntx.fill();  
+cntx.closePath();
+cntx.lineWidth="4";
+cntx.strokeStyle="green";
+cntx.stroke();
+
+
+
+// draw 2 middle eyes
+cntx.beginPath();  
+//cntx.fillStyle='rgb(255,255,255)'; 
+cntx.arc(140+xp, 180, 10, 0, Math.PI * 2, true);
+cntx.fillStyle="black";
+cntx.fill();
+cntx.closePath();
+cntx.lineWidth="5";
+cntx.strokeStyle="green";
+cntx.stroke();
+///////////
+
+cntx.beginPath(); 
+cntx.arc(270+xp, 180, 10, 0, Math.PI * 2, true);
+cntx.fillStyle="black";
+cntx.fill();
+cntx.closePath();
+cntx.lineWidth="5";
+cntx.strokeStyle="green";
+cntx.stroke();
+
+
+ }
+
+setInterval(moveEyes, 180);
+</script>
+ 
+</body></html>

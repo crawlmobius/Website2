@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Smiley Face</title>
+<style>
+body {
+	background-color:#AE25EB;
+	margin-left:10px;
+	margin-top:10px;
+}
+	
+</style>
+</head>
+
+<body>
+<div id="outer">
+<canvas id="FaceCanvas" width="400" height="400" style="border:1px groove">
+Your browser does not support the canvas HTML 5. Please try another browser.
+</canvas>
+</div>
+
+<script>
+var c = document.getElementById("FaceCanvas");
+var ctx = c.getContext("2d");
+
+//Drawing big face circle with grey line x=200, y=200, radius=150, start angle=0 and 2*Math.PI means full circle
+ctx.beginPath();
+ctx.strokeStyle = "grey";
+ctx.lineWidth = "4";
+ctx.arc(200, 200, 150, 0, 2*Math.PI);
+//now filling the circle with skin color
+ctx.fillStyle = 'rgb(221, 203, 170)';
+ctx.fill();
+ctx.stroke();
+
+//Drawing white circle -left eye
+ctx.beginPath();
+ctx.strokeStyle = "black";
+ctx.lineWidth = "3";
+ctx.arc(150, 150, 40, 0, 2*Math.PI);
+ctx.fillStyle = 'rgb(255, 255, 255)';
+ctx.fill();
+ctx.stroke();
+
+//Drawing white circle -right eye
+ctx.beginPath();
+ctx.strokeStyle = "black";
+ctx.lineWidth = "3";
+ctx.arc(250, 150, 40, 0, 2*Math.PI);
+ctx.fillStyle = 'rgb(255, 255, 255)';
+ctx.fill();
+ctx.stroke();
+
+//Drawing blue circle -left eye
+ctx.beginPath();
+ctx.strokeStyle = "black";
+ctx.lineWidth = "2";
+ctx.arc(150, 160, 20, 0, 2*Math.PI);
+ctx.fillStyle = 'rgb(0, 153, 255)';
+ctx.fill();
+ctx.stroke();
+
+//Drawing blue circle -right eye
+ctx.beginPath();
+ctx.strokeStyle = "black";
+ctx.lineWidth = "2";
+ctx.arc(250, 160, 20, 0, 2*Math.PI);
+ctx.fillStyle = 'rgb(0, 153, 255)';
+ctx.fill();
+ctx.stroke();
+
+//Drawing black dot -left eye
+ctx.beginPath();
+ctx.strokeStyle = "black";
+ctx.lineWidth = "1";
+ctx.arc(150, 165, 10, 0, 2*Math.PI);
+ctx.fillStyle = 'rgb(0, 0, 0)';
+ctx.fill();
+ctx.stroke();
+
+//Drawing black dot -right eye
+ctx.beginPath();
+ctx.strokeStyle = "black";
+ctx.lineWidth = "1";
+ctx.arc(250, 165, 10, 0, 2*Math.PI);
+ctx.fillStyle = 'rgb(0, 0, 0)';
+ctx.fill();
+ctx.stroke();
+
+//Drawing nose. As its a half circle = 1*Math.PI
+ctx.beginPath();
+ctx.strokeStyle = "grey";
+ctx.lineWidth = "2";
+ctx.arc(200, 192, 40, 0, 1*Math.PI);
+//ctx.closePath(); //---this function is connecting the curve with straight line. If remove it, then it will be an open curve.
+ctx.stroke();
+
+//Drawing mouth=bottom lip
+ctx.beginPath();
+ctx.strokeStyle = "red";
+ctx.lineWidth = "15";
+ctx.arc(200, 220, 90, 0, 1*Math.PI);
+ctx.stroke();
+
+//Drawing mouth=top lip
+ctx.beginPath();
+ctx.moveTo(120, 250);
+ctx.lineTo(290, 250);
+ctx.lineWidth = "15";
+ctx.strokeStyle = "red";
+ctx.stroke();
+
+</script>
+</body>
+</html>

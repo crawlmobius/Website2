@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style>
+.mybackground {
+	position: relative;
+	overflow: hidden;
+	width: 800px;
+	height: 600px;
+	background-image: url(grass_bg.jpg);
+}
+
+.mybackground .bee {
+	position: absolute;	
+	top:500px;
+	left: 400px;
+	background-image: url(bee.gif);
+	width: 140px;
+	height: 105px;
+	padding-top: 0px;
+	text-align: center;	
+	
+	color:black;
+	white-space: nowrap;
+}
+.myButton
+{
+	background-color:yellow;
+	width: 90px;
+	height: 30px;
+	border:5px solid green;
+	padding: 0px 0px 0px 40px;
+}	
+</style>
+<script type="text/javascript">
+var stopnow=0;
+var uleft = 400;
+var utop = 500;
+var dl = 3;
+var dt = 3; 
+var turn_top =0;   
+var turn =0;
+var mysong =0;
+
+  function move() {
+	uleft = 200;
+	utop = 450;
+	
+	
+  var elem=document.getElementById("mybee");
+  var snd = new Audio("bee.mp3"); // buffers automatically when created
+  snd.play();
+
+  function frame() { 
+	mysong =1;
+	/*if (turn==0 ) // move to 1st turn
+	 {	
+		if (utop>200) { uleft+=dl; utop -=dt; } else { turn=1;}
+	 
+	}	   
+	if ( turn==1 )  // check 2nd finish condition
+     { 
+		if (utop >30) {   uleft-=dl; utop -=dt; }	else   {   turn=2 ;}				
+	  }
+	if ( turn==2 )  // check 3 finish condition
+    { 	   
+	  if (utop<400) {  utop +=dt; }   
+	  else { 
+		  turn=0; 
+		 // uleft = 100;
+		 // utop = 400;
+		  } 
+	} */
+	switch (turn) {
+		case 0: // move up to 1st turn
+			if (utop > 300) { utop-=dt; uleft-=dl;} else { turn=1;}
+			break;
+		case 1: // move up to 2nd turn
+			if (utop>50) { utop-=dt; uleft+=dl; } else { turn=2;}
+			break;
+		 case 2: // move up to 3d turn
+			if (utop <300) {  utop +=dt; uleft+=dl; }	else   {   turn=3 ;}		
+			break;
+		case 3: // move up to 4th turn
+			if (utop<500) {  uleft-=dl;  utop +=dt;  }  else   {   turn=4 ;}	  
+			break;
+	} 
+	
+	
+	elem.style.left = uleft + 'px'; // position assign
+	elem.style.top = utop + 'px'; 
+  }
+ 
+  var id = setInterval(frame, 30); // move every 60ms
+}
+
+
+</script>
+<meta charset="utf-8">
+</head>
+<body>
+
+<div class="mybackground">
+
+ <div style="left: 200px; top: 450px;" class="bee" id="mybee" ></div>
+</div><br />
+ <div class="myButton" id="start" onclick="javascript:move();"> Start </div>
+ 
+
+
+</body></html>

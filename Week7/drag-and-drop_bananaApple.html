@@ -1,0 +1,106 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"> 
+<title>HTML5 Drag and Drop</title> 
+<style> 
+#shelf {
+width:500px;
+height:100px;
+background-color:#eeeeee;
+border-style:solid;
+border-width:thin;
+}
+#shoppingcartcenter {
+position:absolute;
+width:180px;
+height:180px;
+top:220px;
+left:75px;
+}
+#boxapple {
+position:absolute;
+width:180px;
+height:180px;
+top:220px;
+left:25px;
+border:15px solid green;
+}
+#boxbanana{
+position:absolute;
+width:180px;
+height:180px;
+top:220px;
+left:375px;
+border:15px solid yellow;
+}
+.fruit {
+width:75px;
+height:30px;
+float:left;
+margin-left:10px;
+margin-top:10px;
+}
+
+.box{
+width:250px;
+height:250px;
+float:left;
+margin-left:10px;
+margin-top:10px;
+}
+</style> 
+</head> 
+<body> 
+
+<h1>Drag and Drop </h1> 
+<div id="shelf" ondrop = "drop(event)" ondragover = "allowDrop(event)" ondragenter = "enter(this,event)" >
+  <div id="apple1" class="fruit" ><img src="images/apple.gif" alt="apple" draggable = "true" ondragstart = "drag(this,event)" ></div>
+  <div  id="apple2" class="fruit" ><img src="images/apple.gif" alt="apple" draggable = "true" ondragstart = "drag(this,event)" ></div>
+   <div  id="banana1" class="fruit" ><img src="images/banana.gif" alt="banana" draggable = "true" ondragstart = "drag(this,event)" ></div>
+  <div  id="banana2" class="fruit" ><img src="images/banana.gif" alt="banana"  draggable = "true" ondragstart = "drag(this,event)"></div>
+ </div>
+<br><br><br>
+
+<div id="boxbanana_cont" class="box">
+ <div id="boxbanana"  ondrop = "drop(this,event,'boxbanana_cont')" ondragover = "allowDrop(this,event,'boxbanana_cont')" ondragenter = "enter(this,event,'boxapple_cont')" ></div> 
+</div>
+
+<div id="boxapple_cont" class="box">
+ <div id="boxapple"  ondrop = "drop(this,event,'boxapple_cont')" ondragover = "allowDrop(this,event,'boxapple_cont')" ondragenter = "enter(this,event,'boxapple_cont')"></div> 
+</div>
+
+<script>
+function allowDrop(ev) {
+	ev.preventDefault();
+}
+
+function drag(ev) {
+	ev.dataTransfer.setData("Text", ev.target.id);
+	document.getElementById("divMsg2").style.visibility="hidden";
+	document.getElementById("divMsg1").style.visibility="hidden";
+	}
+	
+function drop(ev) {
+	ev.preventDefault();
+	var data = ev.dataTransfer.getData("Text");
+	ev.target.appendChild(document.getElementById(data));
+	document.getElementById("divMsg2").style.visibility="visible";
+}
+function enter(e) {
+	document.getElementById("divMsg1").style.visibility="visible";
+	return true;
+} 
+
+</script> 
+
+<div id ="div1" ondrop="drop(this,event)" ondragover="allowDrop(this,event)" ondragenter="enter(this,event)"></div>
+
+<div id ="div2" ondrop = "drop(this,event)" ondragover="allowDrop(this,event)" ondragenter="enter(this,event)"></div>
+<br>
+<div>
+<p> Drag the fruits into boxes</p></div>
+
+</body> 
+</html>

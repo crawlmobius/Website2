@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script src="http://fabricjs.com/lib/fabric.js"></script>
+</head>
+
+<body>
+<canvas id = "c" width="400" height="400"></canvas>
+Colour:
+<input type = "color" name = "ourcolour" id = "ourcolour"><br>
+<button type = "button" onClick = "addRect()">Rectangle</button>
+<button type = "button1" onClick = "addShape()">Shape</button>
+<input type = "checkbox" name = "circle" id = "circle" > I want a circle<br>
+<input type="checkbox" name = "rectangular" id = "rectangular" value="true">I want a rectangular<br>
+<br> Radius:
+<select id = "ourRadius">
+<option value = "20">20</option>
+<option value= "40" selected>40</option>
+<option value = "60">60</option>
+<option value = "80">80</option>
+</select><br>
+<label for = "rwidth">Rectangular Width:</label>
+<input type = "range" name = "rwidth" id = "rwidth" value = "50" min = "0" max = "100"><br>
+
+<script>
+var canvas = new fabric.Canvas('c', {backgroundColor: "pink"});
+
+function addRect() {
+	var ourCol = document.getElementById('ourcolour').value;
+	
+rect = new fabric.Rect({left:100, top:100, width: 50, height: 50, fill: ourCol });
+canvas.add(rect);
+};
+
+function addShape() {
+	var ourCol = document.getElementById('ourcolour').value;
+	var ourRad = document.getElementById('ourRadius').value;
+	var ourWidth = document.getElementById('rwidth').value;
+	var ourChoice1 = document.getElementById('rectangular').checked;
+	var ourChoice2 = document.getElementById('circle').checked;
+			if (ourChoice1) {
+				var rect = new fabric.Rect({left:100, top:100, width: ourWidth, height: 50, fill: ourCol});
+				canvas.add(rect);
+			}
+			if (ourChoice2) {
+				var circle = new fabric.Circle({ radius: ourRad, fill: ourCol, left: 200, top: 200});
+				canvas.add(circle);
+			}
+};
+</script>
+
+</body>
+</html>

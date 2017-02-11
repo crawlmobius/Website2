@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jewellery Shop</title>
+<style>
+#velvet{
+	width:1200px;
+	height:200px;
+	background-color:#F7080C;
+	background-image:url(redvelvet.jpg);
+	border-style:solid;
+	border-width:thin;
+}
+#bag{
+	position:absolute;
+	width:240px;
+	height:285px;
+	top:100px;
+	left:25px;
+	background-image:url(golden-treasure-box.png);
+}
+.jewellery{
+	width:115px;
+	height:30px;
+	float:left;
+	margin-left:40px;
+	margin-top:10px;
+}
+.myBag{
+	width:250px;
+	height:250px;
+	float:left;
+	margin-left:10px;
+	margin-top:10px;
+}
+
+
+</style>
+</head>
+
+<body>
+<h1>Drag and Drop</h1>
+<div id = "bag_cont" class ="myBag">
+<div id = "bag" ondrop = "drop(this,event, 'bag_cont')" ondragenter = "return false" ondragover = "return false"></div>
+</div>
+<br><br><br>
+
+<div id = "velvet" ondrop = "drop(this, event, 'velvet')" ondragenter = "return false" ondragover = "return false">
+	<div draggable="true" id="silver1" class="jewellery" ondragstart = "drag(this,event)"><img src="silvernecklace2.png" ></div>
+    <div draggable="true" id="silver2" class="jewellery" ondragstart = "drag(this,event)"><img src="silvernecklace.png" ></div>
+    <div draggable="true" id="gold1" class="jewellery" ondragstart = "drag(this,event)"><img src="goldenbracelet.png" ></div>
+    <div draggable="true" id="silver3" class="jewellery" ondragstart = "drag(this,event)"><img src="silvernecklace1.png" ></div>
+    <div draggable="true" id="gold2" class="jewellery" ondragstart = "drag(this,event)"><img src="goldennecklace.png" ></div>
+    <div draggable="true" id="gold3" class="jewellery" ondragstart = "drag(this,event)"><img src="goldenring.png" ></div>
+    </div>
+<br><br><br>
+
+<script>
+function drag(drag_object, e){
+	e.dataTransfer.setData('Text', drag_object.id);
+}
+
+function drop(drop_target, e, elementname){
+	var id = e.dataTransfer.getData('Text');
+	switch(elementname){
+		
+		case "bag_cont":
+		if(id.indexOf("gold")>-1){
+			drop_target.appendChild(document.getElementById(id));}
+			else {alert("This is a silver jewellery! Treasure Chest takes only golden jewellery." );}
+e.preventDefault();
+break;
+	}
+	
+}
+</script>    
+</body>
+</html>

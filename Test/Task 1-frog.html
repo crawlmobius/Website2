@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Canvas</title>
+</head>
+
+<body>
+<div id = "outer">
+<canvas id = canvas1 width="500" height="500" style=" border:#51A70B solid 12px"> Your browser does not support canvas. Please try another browser.</canvas>
+<script>
+var mycanvas = document.getElementById("canvas1");
+var ctx = mycanvas.getContext("2d");
+
+//Task 1/2 - drawing rectangle in colour
+
+ctx.fillStyle = "#CC99FF";
+ctx.fillRect(20, 20, 460, 460);
+
+//Task 1/3 -frogs head in colour
+ctx.beginPath();
+ctx.arc(230, 230, 70, 0, 2*Math.PI);
+ctx.strokeStyle = "black" ;
+ctx.lineWidth = "4";
+ctx.stroke();
+ctx.fillStyle = "#33FF99";
+ctx.fill();
+
+//Task 1/4 - frogs body outlined
+ctx.beginPath();
+ctx.arc(230, 350, 50, 0, 2*Math.PI);
+ctx.strokeStyle = "black";
+ctx.lineWidth = "10";
+ctx.stroke();
+ctx.fillStyle = "#33FF99";
+ctx.fill();
+
+//Task 1/5 - two squares
+ctx.fillStyle = "#009966";
+ctx.fillRect(131, 340, 45, 85);
+
+ctx.fillStyle = "#009966";
+ctx.fillRect(285, 340, 45, 85);
+
+//Task 1/6 - mouth
+ctx.beginPath();
+ctx.arc(230, 230, 60, 0, Math.PI);
+ctx.strokeStyle = "red" ;
+ctx.lineWidth = "10";
+ctx.closePath();
+ctx.stroke();
+
+//Task 1/7 - yellow eyes
+ctx.beginPath();
+ctx.arc(180, 200, 40, 0, Math.PI, true);
+ctx.strokeStyle = "green";
+ctx.lineWidth = "4";
+ctx.closePath();
+ctx.stroke();
+ctx.fillStyle = "yellow";
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(280, 200, 40, 0, Math.PI, true);
+ctx.strokeStyle = "green";
+ctx.lineWidth = "4";
+ctx.closePath();
+ctx.stroke();
+ctx.fillStyle = "yellow";
+ctx.fill();
+
+//zrachki
+ctx.beginPath();
+ctx.arc(280, 190, 5, 0, 2*Math.PI);
+ctx.strokeStyle = "green";
+ctx.lineWidth = "4";
+ctx.stroke();
+ctx.fillStyle = "black";
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(185, 190, 5, 0, 2*Math.PI);
+ctx.strokeStyle = "green";
+ctx.lineWidth = "4";
+ctx.stroke();
+ctx.fillStyle = "black";
+ctx.fill();
+
+var xp = 15;
+var xp_add = 3;
+
+function moveEyes(){
+	xp = xp + xp_add;
+	if (xp > 25 || xp < -30) xp_add = -xp_add;
+	xp=xp + xp_add;
+	drawEyes(xp);}
+	
+	function drawEyes(xp){
+	//Task 1/7 - yellow eyes
+ctx.beginPath();
+ctx.arc(180, 200, 40, 0, Math.PI, true);
+ctx.strokeStyle = "green";
+ctx.lineWidth = "4";
+ctx.closePath();
+ctx.stroke();
+ctx.fillStyle = "yellow";
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(280, 200, 40, 0, Math.PI, true);
+ctx.strokeStyle = "green";
+ctx.lineWidth = "4";
+ctx.closePath();
+ctx.stroke();
+ctx.fillStyle = "yellow";
+ctx.fill();
+
+//zrachki
+ctx.beginPath();
+ctx.arc(280+xp, 190, 5, 0, 2*Math.PI, true);
+ctx.strokeStyle = "green";
+ctx.lineWidth = "4";
+ctx.stroke();
+ctx.fillStyle = "black";
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(185+xp, 190, 5, 0, 2*Math.PI, true);
+ctx.strokeStyle = "green";
+ctx.lineWidth = "4";
+ctx.stroke();
+ctx.fillStyle = "black";
+ctx.fill();	
+	}
+	setInterval(moveEyes, 80);
+	
+
+</script>
+</body>
+</html>

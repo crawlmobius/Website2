@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<div id="outer">
+<canvas id="canvas1" width="400" height="400">
+Your browser doesn't support the canvas! Try another browser.
+</canvas>
+</div>
+<script>
+  var mycanvas=document.getElementById("canvas1");
+  var cntx=mycanvas.getContext('2d');
+  var mygradient=cntx.createRadialGradient(0,0,100,20,20,200);   
+  
+ mygradient.addColorStop(0,"purple");
+  mygradient.addColorStop(0.2,"yellow");
+  mygradient.addColorStop(0.45,"pink");
+  mygradient.addColorStop(0.75, "blue");
+  mygradient.addColorStop(0.84,"aqua");   
+  mygradient.addColorStop(1,"purple"); 
+             
+  cntx.fillStyle=mygradient;
+  cntx.fillRect(0,0,200,200);
+  
+   var mygradient2=cntx.createRadialGradient(400,0,100,380,20,200);   
+  
+ mygradient2.addColorStop(0,"purple");
+  mygradient2.addColorStop(0.2,"yellow");
+  mygradient2.addColorStop(0.45,"pink");
+  mygradient2.addColorStop(0.75, "blue");
+  mygradient2.addColorStop(0.84,"aqua");   
+  mygradient2.addColorStop(1,"purple");
+             
+  cntx.fillStyle=mygradient2;
+  cntx.fillRect(200,0,200,200);
+  
+  var mygradient3=cntx.createRadialGradient(0,400,100,20,380,200);   
+  
+ mygradient3.addColorStop(0,"purple");
+  mygradient3.addColorStop(0.2,"yellow");
+  mygradient3.addColorStop(0.45,"pink");
+  mygradient3.addColorStop(0.75, "blue");
+  mygradient3.addColorStop(0.84,"aqua");   
+  mygradient3.addColorStop(1,"purple");
+             
+  cntx.fillStyle=mygradient3;
+  cntx.fillRect(0,200,200,200);
+  
+ var mygradient4=cntx.createRadialGradient(400,400,100,380,380,200);   
+  
+ mygradient4.addColorStop(0,"purple");
+  mygradient4.addColorStop(0.2,"yellow");
+  mygradient4.addColorStop(0.45,"pink");
+  mygradient4.addColorStop(0.75, "blue");
+  mygradient4.addColorStop(0.84,"aqua");   
+  mygradient4.addColorStop(1,"purple");
+             
+  cntx.fillStyle=mygradient4;
+  cntx.fillRect(200,200,200,200); 
+</script>
+</body>
+</html>

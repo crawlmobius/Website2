@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style>
+.mybackground {
+	position: relative;
+	overflow: hidden;
+	width: 800px;
+	height: 600px;
+	background-color: grey;
+}
+
+.mybackground .test {
+	position: absolute;	
+	top:600px;
+	left: 600px;
+	background-color:red;
+	width: 50px;
+	height: 50px;
+	white-space: nowrap;
+}
+.mybutton
+{
+	background-color:yellow;
+	width: 100px;
+	height: 40px;
+	font-size: 30px;
+	font-family: Times, serif;
+	color:blue;
+	border-style:solid;
+	border-color:green;
+		border:3px;
+
+}	
+</style>
+<script type="text/javascript">
+var stopnow=0;
+var uleft = 400;
+var utop = 10;
+var dl = 2;
+var dt = 2; 
+var turn_top =0;   
+var turn =0;
+
+  function move() {
+	uleft =400;
+	utop = 10;
+	var elem=document.getElementById("mytest");
+
+
+	function frame() { 
+
+		//Put some logic here to move from point 1 to 2
+		 utop+=dt; 
+		 uleft-=dl;
+		 
+		elem.style.left = uleft + 'px'; // position assign
+		elem.style.top = utop + 'px'; 
+  }
+ 
+  var id = setInterval(frame, 60); // move every 60ms
+}
+
+
+</script>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+ 
+<div class="mybackground">
+ <div class="mybutton" id="start" onclick="javascript:move();">&nbsp;MOVE </div><br>
+
+ <div style="left: 400px; top: 10px;" class="test" id="mytest"></div>
+</div>
+
+
+</body></html>

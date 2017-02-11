@@ -1,0 +1,160 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8"> 
+<title>canvas Example Move</title> 
+<body >
+	<p><h4>Press Green Box to begin and use arrow keyboard buttons ---> to move and catch the pink boxes</h4></p>
+    <span id = "dummy"></span>
+<section style="border-style: solid; border-width: 2px; width: 500px;">
+  <canvas id="myCanvas" width="500" height="400" tabindex="0" >Canvas tag not supported
+  </canvas>
+</section>
+
+
+	<script>
+		var canvas = document.getElementById("myCanvas");
+		canvas.addEventListener('keydown', doKeyDown, true);
+		cxt = canvas.getContext("2d");
+		
+		var sc = 0;
+		var x = 100;
+		var y = 100;
+		var w = 50;
+		var h = 30;
+		cxt.fillStyle = "lime";
+		drawRec(x, y);
+
+		var x1 = 50;
+		var y1 = 50;
+		var x2 = 100;
+		var y2 = 200;
+		var x3 = 200;
+		var y3 = 100;
+		cxt.fillStyle="#FF00FF";
+		cxt.fillRect(x1, y1, 30, 30);
+		cxt.fillRect(x2, y2, 30, 30);
+		cxt.fillRect(x3, y3, 30, 30);	
+		var box1=[x1, y1, 30, 30];
+		var box2=[x2, y2, 30, 30];
+		var box3=[x3, y3, 30, 30];
+
+//var boxs = [box1,box2, box3];   // possible way to declare array as well
+		var boxs = [];  // declare array
+		boxs.push(box1); // add element to array
+		boxs.push(box2);
+		boxs.push(box3);
+
+
+		function doKeyDown(e){
+			switch(event.keyCode) {
+				  case 37: { // Left Arrow						
+						updateCanvas();
+						x = x - 10;
+						drawRec(x, y);
+						break;
+				  }
+				  case 38: { // Up Arrow						
+						updateCanvas();
+						y = y - 10;
+						drawRec(x, y);
+						break;
+				  }
+				  case 39: { // Right Arrow						
+						updateCanvas();
+						x = x + 10;
+						drawRec(x, y);
+						break;
+				  }
+				  case 40: { // Down Arrow						
+						updateCanvas();
+						y = y + 10;
+						drawRec(x, y);
+						break;
+				  }
+			}			
+		check(x, y, w, h);
+		}
+
+		function drawRec(x, y) {
+			cxt.fillStyle = "lime";			
+			cxt.fillRect(x, y, w, h);
+		}
+		
+		function check(x, y, w, h) {
+			for (i = 0; i < boxs.length; i++) {
+				
+				var x1 = boxs[i][0];
+				var y1 = boxs[i][1];
+				var w1 = boxs[i][2];
+				var h1 = boxs[i][3];
+				if (intersects(x, y, w, h, x1, y1, w1, h1))
+				{
+					//alert (" x=" +x1 +" y=" +y1 +" w=" +w1 +" h=" + h1);
+					playSound('beep-1.mp3');
+					sc+=1;
+					boxs.splice(i, 1);
+				}
+			}
+		}
+		//returns true if there is any overlap
+		//params: x, y, w, h, of two rectangles
+		function intersects(x1, y1, w1, h1, x2, y2, w2, h2){
+			w2 += x2;
+			w1 += x1;
+			if (x2 > w1 || x1 > w2) return false;
+			h2 += y2;
+			h1 += y1;
+			if (y2 > h1 || y1 > h2) return false;
+			return true;
+		}
+		
+		function updateCanvas() { //update Canvas()
+		
+			//Clear Canvas
+			cxt.clearRect(0,0, canvas.width,canvas.height);
+			cxt.fillStyle="#FF00FF";
+			//Check if we should generate a new Rectangle to start move
+			if (Math.random() < 0.09)
+			{
+				nx = -10;
+				ny = Math.floor(Math.random() * canvas.height);
+				boxs.push([nx, ny, 30, 30]);
+			}
+			
+			//Update the position of the rectangles
+			for (var i = boxs.length - 1; i >= 0; i--) {
+				boxs[i][0] = boxs[i][0]+5; //update x position
+				if (boxs[i][0] > canvas.width)
+				boxs.splice(i, 1);
+				else
+				{
+					
+				cxt.fillRect(boxs[i][0], boxs[i][1], boxs[i][2], boxs[i][3]);	
+				}
+			}
+			//Update Score
+				writeScore(sc);
+		}
+		function playSound(soundfile) 
+{
+	document.getElementById("dummy").innerHTML=
+    "<embed src=\""+soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+}
+	
+		function writeScore(sc) {
+			//Transparent black text
+			cxt.font = '24px "Segoe UI"';
+			cxt.fillStyle = "rgba(0, 0, 0, 0.9)";
+			cxt.fillText("Score: " +sc, 0, 30);
+		}
+		
+		
+	</script>
+
+</body>
+
+
+</html>
+
+

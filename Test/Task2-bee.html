@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bee</title>
+<style>
+.myBackground {
+	position:relative;
+	overflow:hidden;
+	width:800px; 
+	height:600px;
+	background-image:url(grass_bg.jpg);}
+	
+.bee {
+	position:absolute;
+	top: 500px;
+	left: 400px;
+	background-image:url(bee.gif);
+	width:140px;
+	height:105px;
+	padding-top:0px;
+	text-align:center;
+	color:#000000;
+	white-space:nowrap;}
+	
+.myButton{
+	background-color:#1AEC24;
+	width:90px;
+	height:30px; border:5px #E146EB;
+	padding: 0px 0px 0px 40px;}
+</style>
+<script type = "text/javascript">
+
+var uleft = 400;
+var utop =  550;
+var dl = 2;
+var dt = 2;
+var turn = 0;
+
+function moveBee(){
+	uleft = 200;
+	utop = 450;
+	var elem = document.getElementById("mybee");
+	var snd = new Audio("bee.mp3");
+	snd.play();
+	
+	function frame(){
+		switch(turn){
+			
+			case 0:
+			if (utop >300) {utop = utop -dt; uleft = uleft -dl}
+			else {turn=1};
+			break;
+			case 1:
+			if (utop >50) {utop = utop - dt; uleft = uleft + dl}
+			else {turn = 2};
+			break;
+			case 2:
+			if (utop <300) {utop = utop + dt; uleft = uleft + dl}
+			else {turn = 3};
+			break;
+			case 3:
+			if (utop <450) {utop = utop + dt; uleft = uleft -dl}
+			else {turn = 4};
+			break;
+		}
+			elem.style.left = uleft +'px';
+			elem.style.top = utop + 'px';
+			}
+			var id =setInterval(frame, 30);
+}
+</script>
+</head>
+
+<body>
+
+<div class = "myBackground">
+<div style="left:200px; top:450px;" class="bee" id="mybee">
+</div>
+<br>
+<div class = "myButton" id = "start" onClick="javascript:moveBee();">START</div>
+</body>
+</html>

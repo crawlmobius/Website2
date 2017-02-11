@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+div {
+	width: 350px;
+	height: 350px;
+	position: relative;
+	background: pink;
+	-webkit-animation: myfirst 5s; /* Chrome, Safari, Opera */
+	animation: myfirst 5s;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+	font-style: inherit;
+	font-weight: inherit;
+	font-size: 100pt;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myfirst {
+    from {background: green;}
+    to {background: yellow;}
+}
+
+/* Standard syntax */
+@keyframes myfirst {
+    from {background: red; top:0; left:0; }
+    25% {background: yellow; top:0; left:100px}
+	35% {background-color:#6164F5; width:80px}
+	55% {background-color:#A8F193; width: 850px; top:100px; left: 50px; }
+	75 {background-color:#F568DF;width: 850px;  top:50px; left:100px;}
+	85% {background-color:#18EF0F; width: 700px;
+}
+100% {background-color:#FC89F1; width:350px;}
+</style>
+</head>
+<body>
+<p><b>Note:</b> This example does not work in Internet Explorer 9 and earlier versions.</p>
+<div>Box</div>
+</body>
+</html>

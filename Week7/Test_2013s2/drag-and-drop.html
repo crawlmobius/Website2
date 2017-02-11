@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"> 
+<title>HTML5 Drag and Drop</title> 
+<style> 
+#grass{
+width:1200px;
+height:200px;
+background-color:#eeeeee;
+background-image: url(grass.jpg);
+border-style:solid;
+border-width:thin;
+}
+
+#hedgehog {
+position:absolute;
+width:250px;
+height:180px;
+top:130px;
+left:25px;
+background-image: url(hedgehog.gif);
+}
+
+.mushroom {
+width:115px;
+height:30px;
+float:left;
+margin-left:40px;
+margin-top:10px;
+}
+
+.myHedgehog{
+width:250px;
+height:250px;
+float:left;
+margin-left:10px;
+margin-top:10px;
+}
+</style> 
+</head> 
+<body> 
+<h1>Drag and Drop </h1> 
+<div id="hedgehog_cont" class="myHedgehog">
+ <div id="hedgehog" ></div> 
+</div>
+<br><br><br>
+
+<div id="grass" >
+  <div  id="good1" class="mushroom" ><img src="mushroom_good.png" alt="good" /"></div>
+  <div  id="good2" class="mushroom" ><img src="mushroom_good.png" alt="good" /"></div>
+  <div  id="bad3" class="mushroom"><img src="mushroom_bad.png" alt="mushroom bad" /"></div>
+  <div  id="good3" class="mushroom" ><img src="mushroom_good.png" alt="good" /"></div>
+  <div id="bad4" class="mushroom" ><img src="mushroom_bad.png" alt="mushroom bad" /"></div>
+ </div>
+<br><br><br>
+
+
+<script>
+function drag(drag_object, e) {
+//
+}
+function drop(drop_target, e, elementname) {
+//
+} 
+
+} 
+</script> 
+</body> 
+</html>

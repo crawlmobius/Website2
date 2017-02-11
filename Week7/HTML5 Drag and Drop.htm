@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8"> 
+<title>HTML5 Drag and Drop</title> 
+<style> 
+#shelf {
+width:1000px;
+height:100px;
+background-color:#eeeeee;
+border-style:solid;
+border-width:thin;
+}
+#shoppingcartcenter {
+position:absolute;
+width:180px;
+height:180px;
+top:220px;
+left:75px;
+}
+.fruit {
+width:75px;
+height:30px;
+float:left;
+margin-left:10px;
+margin-top:10px;
+}
+#dollarsign {
+position:absolute;
+top:300px;
+left:480px;
+font-size:1.6em;
+font-weight:bold;
+}
+#cost {
+position:absolute;
+top:300px;
+left:500px;
+font-size:1.6em;
+font-weight:bold;
+}
+.container {
+width:250px;
+height:250px;
+float:left;
+margin-left:10px;
+margin-top:10px;
+}
+</style> 
+</head> 
+<body> 
+<h1>Drag and Drop Example</h1> 
+<div id="shelf" ondrop="drop(this, event, 'shelf')" ondragenter="return false" ondragover="return false">
+  <div draggable="true" id="apple1" class="fruit" ondragstart="drag(this, event)"><img src="images/apple.gif" alt="apple"></div>
+  <div draggable="true" id="apple2" class="fruit" ondragstart="drag(this, event)"><img src="images/apple.gif" alt="apple"></div>
+  <div draggable="true" id="apple3" class="fruit" ondragstart="drag(this, event)"><img src="images/apple.gif" alt="apple"></div>
+  <div draggable="true" id="banana1" class="fruit" ondragstart="drag(this, event)"><img src="images/banana.gif" alt="banana"></div>
+  <div draggable="true" id="banana2" class="fruit" ondragstart="drag(this, event)"><img src="images/banana.gif" alt="banana"></div>
+  <div draggable="true" id="banana3" class="fruit" ondragstart="drag(this, event)"><img src="images/banana.gif" alt="banana"></div>
+  <div draggable="true" id="strawberry1" class="fruit" ondragstart="drag(this, event)"><img src="images/strawberry.gif" alt="strawb"></div>
+  <div draggable="true" id="strawberry2" class="fruit" ondragstart="drag(this, event)"><img src="images/strawberry.gif" alt="strawb"></div>
+  <div draggable="true" id="strawberry3" class="fruit" ondragstart="drag(this, event)"><img src="images/strawberry.gif" alt="strawb"></div>
+</div>
+
+<br><br><br>
+
+<div id="shoppingcart" class="container">
+ <div id="shoppingcartcenter" ondrop="drop(this, event, 'shoppingcart')" ondragenter="return false" ondragover="return false"></div> 
+ <img src="images/shoppingcart.png" alt="shopping cart"></div>
+<div id="dollarsign">$</div>
+<div id="cost">0.00</div>
+
+<script>
+function drag(drag_object, e) {
+e.dataTransfer.setData('Text', drag_object.id);
+}
+function drop(drop_target, e, elementname) {
+var id = e.dataTransfer.getData('Text');
+drop_target.appendChild(document.getElementById(id));
+e.preventDefault();
+currentcost=parseFloat(document.getElementById("cost").innerHTML);
+//get type of fruit to determine price
+if (id.indexOf("apple")>-1) { price=.2 }
+if (id.indexOf("banana")>-1) { price=.25 }
+if (id.indexOf("strawberry")>-1) { price=.45 }
+switch (elementname) {
+case "shoppingcart":
+ newcost=(currentcost + price).toFixed(2);
+ break;
+case "shelf":
+ newcost=(currentcost - price).toFixed(2);
+ break;
+} 
+document.getElementById("cost").innerHTML=newcost;
+} 
+</script> 
+ 
+</body></html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body><span id = "dummy"></span>
+<script src="http://fabricjs.com/lib/fabric.js"></script>
+<canvas id="c" width="400" height="400" ></canvas>
+<script >
+(function() {
+  var canvas = this.__canvas = new fabric.Canvas('c');
+  fabric.Object.prototype.transparentCorners = false;
+
+  var rect1 = new fabric.Rect({
+    width: 200, height: 100, left: 0, top: 50, angle: 30,
+    fill: 'rgba(255,0,0,0.5)'
+  });
+
+  var rect2 = new fabric.Rect({
+    width: 100, height: 100, left: 350, top: 250, angle: -10,
+    fill: 'rgba(0,200,0,0.5)'
+  });
+
+  canvas.add(rect1, rect2);
+  canvas.on({
+    'object:moving': onChange,
+    'object:scaling': onChange,
+    'object:rotating': onChange,
+  });
+
+
+//adding function for sound for collision
+function playSound(soundfile) 
+	{
+		document.getElementById("dummy").innerHTML=
+		"<embed src=\""+soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+	}
+
+  function onChange(options) {
+    options.target.setCoords();
+    canvas.forEachObject(function(obj) {
+      if (obj === options.target) return;
+      //obj.setOpacity(options.target.intersectsWithObject(obj) ? 0.5 : 1);
+	  if (options.target.intersectsWithObject(obj)) { 	  
+	  playSound('beep.mp3'); } ;
+    });
+  }
+})();
+
+
+</script>
+</body>
+</html>

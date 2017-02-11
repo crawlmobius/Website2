@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<script src="http://fabricjs.com/lib/fabric.js"></script>
+
+<canvas id="c" width="400" height="400" ></canvas>
+<script >
+  var i, dot;   
+    getRandomInt = fabric.util.getRandomInt,
+    rainbow    = ["#ffcc66", "#ccff66", "#66ccff", "#ff6fcf", "#ff6666"],
+    rainbowEnd = rainbow.length - 1;
+ 
+  var canvas  = new fabric.Canvas('c', { backgroundColor: "#000" });   
+
+  for (i = 100; i >= 0; i--) {
+    dot = new fabric.Circle({
+      left:   getRandomInt(0, 400),
+      top:    getRandomInt(0, 400),
+      radius: 3,
+      fill:   rainbow[getRandomInt(0, rainbowEnd)]
+    });
+	
+//animating the dots	
+	dot.animate('top', '+=400', {
+		onChange: canvas.renderAll.bind(canvas),
+		duration: 10500,
+		easing: fabric.util.ease.easeOutBounce
+	});
+    canvas.add(dot);
+  }
+</script>
+
+
+
+</body>
+</html>

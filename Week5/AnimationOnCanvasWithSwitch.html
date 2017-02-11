@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>canvas Example Move</title> 
+<body onLoad="init();">
+  <canvas id="myCanvas" width="400" height="400" >
+  </canvas>
+</body>
+
+<script>
+var context;
+//the position where they are
+var x=20;
+var y=20;
+//dx and dy mean how far they change position
+var dx=20;
+var dy=20;
+var point =0;
+
+function init()
+{
+  context= myCanvas.getContext('2d');
+  setInterval(draw,110);
+}
+
+function draw()
+{
+  //context.clearRect(0,0, 400,400);
+  context.beginPath();
+  context.fillStyle="#6600CC";
+  // Draws a circle of radius 19 at the coordinates 10,10 on the canvas
+  context.arc(x,y,19,0,2*Math.PI,true);
+  context.closePath();
+  context.fill();
+  context.beginPath();
+  context.fillStyle="#FFFF00";
+  context.arc(x,y, 11, 0, 2*Math.PI,true);
+  context.closePath();
+  context.fill();
+  
+  switch(point) {
+	case 0:
+	x+=dx;
+	if (x>300 ) { point =1; }   
+  	break;
+ 		
+	case 1:
+	y+=dy;
+	if ( y > 300 ) { point =2; }
+	break;
+	
+	case 2:
+	x-=dx;
+	if (x<30) { point = 3; }
+	break;
+	
+	case 3:
+	y-=dy;
+	if (y<40) { point = 4; }
+	break;
+}
+}
+  
+  </script>
+  </head>
+  </html>
+  
